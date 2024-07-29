@@ -1,5 +1,6 @@
 # ChARM (Cartoon &amp; Anime Rental Marketplace)
 
+Selamat datang di ChARM 
 ChArm Adalah sebuah website berisikan tempat untuk menyewakan kostum anime
 
 ---
@@ -23,6 +24,15 @@ untuk opsi pengambilan ada dua, ambil di toko atau dikirim ke tempat masing masi
 disini tutoreal penginstalan
 
 ---
+
+## Academician
+
+- [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
+  > As a
+- [Umar Zaki Gunawan](https://github.com/marzkigun27) [UZY]
+  > As a
+- [Junaidi Rahmat](https://github.com/DrealGea) [DAZ]
+  > As a
 
 <div align="center">
   <p style="font-size: 20px; font-weight: 600; text-align: center;">WebDev 3 Academy 2024 <br> RYU DAZ UZY </p>
