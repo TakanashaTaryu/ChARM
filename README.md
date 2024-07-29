@@ -28,10 +28,10 @@ disini tutoreal penginstalan
 ## Academician
 
 - [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
-  > As a
+  > As a 
 - [Umar Zaki Gunawan](https://github.com/marzkigun27) [UZY]
-  > As a
-- [Junaidi Rahmat](https://github.com/DrealGea) [DAZ]
+  > As a 
+- [Dariele Zebada Sanuwu Gea](https://github.com/DrealGea) [DAZ]
   > As a
 
 ---
