@@ -34,6 +34,8 @@ disini tutoreal penginstalan
 - [Junaidi Rahmat](https://github.com/DrealGea) [DAZ]
   > As a
 
+---
+
 <div align="center">
   <p style="font-size: 20px; font-weight: 600; text-align: center;">WebDev 3 Academy 2024 <br> RYU DAZ UZY </p>
 </div>
