@@ -62,3 +62,10 @@ class Database:
     def get_rentals(self):
         self.cursor.execute('SELECT * FROM rentals')
         return self.cursor.fetchall()
+    
+    def search_costumes(self, query):
+        self.cursor.execute('''
+            SELECT * FROM costumes
+            WHERE name LIKE? OR description LIKE?
+        ''', (f'%{query}%', f'%{query}%'))
+        return self.cursor.fetchall()

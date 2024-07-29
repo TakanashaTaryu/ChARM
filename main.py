@@ -12,8 +12,8 @@ def main():
         print('4. Get users')
         print('5. Get costumes')
         print('6. Get rentals')
-        print('7. Exit')
-
+        print('7. Search costumes')
+        print('8. Exit')
         choice = input('Choose an option: ')
 
         if choice == '1':
@@ -45,6 +45,11 @@ def main():
             for rental in rentals:
                 print(rental)
         elif choice == '7':
+            query = input('Enter search query: ')
+            costumes = db.search_costumes(query)
+            for costume in costumes:
+                print(costume)
+        elif choice == '8':
             break
         else:
             print('Invalid choice')
