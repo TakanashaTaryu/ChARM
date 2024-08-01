@@ -31,8 +31,12 @@ There are two pick-up options, pick it up at the shop or send it to the respecti
 
 ## Instalation
 
-- Please clone this repo and open it
+- If you using Laragon, go to C:\laragon\www\ChARM
+```C
+cd C:\laragon\www
+```
 
+- Please clone this repo and open it
 ```C
 git clone https://github.com/yourusername/ChARM.git
 cd ChARM
@@ -67,6 +71,8 @@ http://localhost/charm/register.php
 http://localhost/charm/login.php
 http://localhost/charm/rent.php
 ```
+
+- if you didnt use Laragon for PHP dev enviroment, we provide 'charm_db.sql' to open instantly
 
 ---
 
