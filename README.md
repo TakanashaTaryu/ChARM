@@ -79,11 +79,11 @@ http://localhost/charm/rent.php
 ## Academician
 
 - [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
-  > As a 
+  > As a backend dev
 - [Umar Zaki Gunawan](https://github.com/marzkigun27) [UZY]
-  > As a 
+  > As a UI/UX dev
 - [Dariele Zebada Sanuwu Gea](https://github.com/DrealGea) [DAZ]
-  > As a
+  > As a UI/UX dev
 
 ---
 
