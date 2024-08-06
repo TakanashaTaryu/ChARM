@@ -77,6 +77,19 @@ http://localhost/charm/rent.php
 
 ---
 
+## Version
+
+- Beta 0.1.0
+  Making new title and description for the project
+  
+- Beta 0.3.0
+  Making new UI/UX design in figma
+
+- Beta 0.5.1
+  Making new database concept
+
+---
+
 ## Academician
 
 - [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
