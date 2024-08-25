@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page - ChARM</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="font-lexend bg-gradient-to-r from-dark_cream to-bright_cream">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 bg-orange-400 bg-gradient-to-r  from-dark_cream to-bright_cream">
+        <a href="#" class="flex gap-2 items-center">
+            <img class="max-h-9 w-auto ml-1 md:ml-10"src="asset/logo_Charm.png" alt="logo_Charm">
+            <span class="text-lg text-custom_black font-semibold mt-2">CHARM</span>
+        </a>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="container h-auto min-h-[80vh] max-w-5xl mx-auto py-16 px-4 flex flex-col md:flex-row items-center justify-between">
+        <div class="text-center md:text-left md:w-1/2 space-y-4">
+            <form action="login" method="POST" class="space-y-4">
+                <!-- Username Input -->
+                <div>
+                    <label for="username" class="block text-custom_black font-bold mb-2">Username</label>
+                    <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange" placeholder="Enter your username">
+                </div>
+                <!-- Password Input -->
+                <div>
+                    <label for="password" class="block text-custom_black font-bold mb-2">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange" placeholder="Enter your password">
+                </div>
+                <!-- Login Button -->
+                <div>
+                    <button type="submit" class="w-full bg-custom_orange text-custom_white px-4 py-2 rounded-lg hover:bg-bright_cream hover:text-custom_brown">
+                        Login
+                    </button>
+                </div>
+                <!-- <div class="text-center text-custom_black">
+                    Already got an account? <span class="text-custom_black hover:underline"><a href="Register.html">Register here!</a></span>
+                </div> -->
+            </form>
+            <!-- Additional Links -->
+            <div class="mt-4 text-center">
+                <a href="#" class="text-custom_black hover:underline">Forgot password?</a>
+            </div>
+        </div>
+       
+        <div class="relative w-80 mt-8 md:mt-0 md:w-1/2 flex items-center justify-center md:justify-between">
+            <div class="w-full max-w-xs h-64 rounded flex items-center justify-center mx-auto">
+                <i class='bx bx-chevron-left text-3xl absolute left-4 top-1/2 transform -translate-y-1/2 '></i>
+                <img class="w-full h-full object-contain" src="asset/costume-image=5.png" alt="foto kostum">
+                <i class='bx bx-chevron-right text-3xl absolute right-4 top-1/2 transform -translate-y-1/2'></i>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
