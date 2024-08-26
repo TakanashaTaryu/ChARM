@@ -50,13 +50,31 @@
             </div>
         </div>
        
-        <div class="relative w-80 mt-8 md:mt-0 md:w-1/2 flex items-center justify-center md:justify-between">
-            <div class="w-full max-w-xs h-64 rounded flex items-center justify-center mx-auto">
-                <i class='bx bx-chevron-left text-3xl absolute left-4 top-1/2 transform -translate-y-1/2 '></i>
-                <img class="w-full h-full object-contain" src="asset/costume-image=5.png" alt="foto kostum">
-                <i class='bx bx-chevron-right text-3xl absolute right-4 top-1/2 transform -translate-y-1/2'></i>
+        <div class="relative w-full max-w-xs h-64  overflow-hidden rounded-lg shadow-lg">
+            <!-- Images -->
+            <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
+                <div class="flex-none w-full h-full">
+                    <img src="asset/costum-image-1.jpg" alt="Image 1" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-full h-full">
+                    <img src="asset/costum-image-2.jpg" alt="Image 2" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-full h-full">
+                    <img src="asset/costume-image-4.jpg" alt="Image 3" class="w-full h-full object-cover">
+                </div>
             </div>
+    
+            <!-- Previous Button -->
+            <button id="prevBtn" class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2  text-custom_black hover:translate-x-[-0.5rem]">
+                <i class='bx bx-chevron-left text-3xl '></i>
+            </button>
+    
+            <!-- Next Button -->
+            <button id="nextBtn" class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2  text-custom_black hover:translate-x-[0.5rem]">
+                <i class='bx bx-chevron-right text-3xl'></i>
+            </button>
         </div>
     </section>
+    <script src="script.js"></script>
 </body>
 </html>
