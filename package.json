@@ -1,0 +1,21 @@
+{
+  "name": "charm",
+  "version": "1.0.0",
+  "description": "Selamat datang di ChARM \r ChArm Adalah sebuah website berisikan tempat untuk menyewakan kostum anime",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i src/css/input.css -o src/output.css",
+    "watch": "tailwindcss -i ./src/css/input.css -o ./src/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  },
+  "dependencies": {
+    "tw-elements": "^2.0.0"
+  }
+}
