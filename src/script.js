@@ -4,6 +4,7 @@ const totalImages = images.length;
 let currentIndex = 0;
 const intervalTime = 3000; // 3 seconds for auto slide
 
+
 // Function to move to the next image
 function nextSlide() {
     currentIndex = (currentIndex + 1) % totalImages;
@@ -37,3 +38,21 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     prevSlide();
     autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
 });
+
+function handleMenu() {
+    const navbar = document.getElementById('navbar');
+    const rightPosition = navbar.style.right;
+    const displaystate = navbar.style.display;
+
+
+    if (rightPosition === '0px') {
+        navbar.style.right = '-100%';
+    } else {
+        navbar.style.right = '0px';
+    }
+}
+
+function toggleSearchBar() {
+    const searchBar = document.getElementById('searchBar');
+    searchBar.classList.toggle('hidden');
+}
