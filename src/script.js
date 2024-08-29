@@ -1,41 +1,52 @@
-const carousel = document.getElementById('carousel');
-const images = carousel.children;
-const totalImages = images.length;
+const carousel = document.getElementById('carousel').querySelector('.flex');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 let currentIndex = 0;
-const intervalTime = 3000; // 3 seconds for auto slide
+const intervalTime = 3000; // Time in milliseconds (3 seconds)
+let autoScrollInterval;
 
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalImages;
-    updateCarousel();
+// Number of images in the carousel
+const totalImages = carousel.children.length;
+
+function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateCarousel();
+    }, intervalTime);
 }
 
-// Function to move to the previous image
-function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-    updateCarousel();
+function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
 }
 
-// Update carousel position
+nextBtn.addEventListener('click', () => {
+    stopAutoScroll();
+    if (currentIndex < totalImages - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0; // Loop back to the first image
+    }
+    updateCarousel();
+    startAutoScroll();
+});
+
+prevBtn.addEventListener('click', () => {
+    stopAutoScroll();
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = totalImages - 1; // Loop to the last image
+    }
+    updateCarousel();
+    startAutoScroll();
+});
+
 function updateCarousel() {
-    const offset = -currentIndex * 100; // Adjust to move images horizontally
-    carousel.style.transform = `translateX(${offset}%)`;
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-// Auto-slide functionality
-let autoSlide = setInterval(nextSlide, intervalTime);
-
-// Event listeners for manual control
-document.getElementById('nextBtn').addEventListener('click', () => {
-    clearInterval(autoSlide); // Stop auto-slide on manual click
-    nextSlide();
-    autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
-});
-
-document.getElementById('prevBtn').addEventListener('click', () => {
-    clearInterval(autoSlide); // Stop auto-slide on manual click
-    prevSlide();
-    autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
-});
+// Start automatic scrolling when the page loads
+startAutoScroll();
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
@@ -71,3 +82,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function handleMenu() {
+    const navbar = document.getElementById('navbar');
+    const rightPosition = navbar.style.right;
+    const displaystate = navbar.style.display;
+
+
+    if (rightPosition === '0px') {
+        navbar.style.right = '-100%';
+    } else {
+        navbar.style.right = '0px';
+    }
+}
+
+function toggleSearchBar() {
+    const searchBar = document.getElementById('searchBar');
+    searchBar.classList.toggle('hidden');
+}
