@@ -2,7 +2,7 @@ const carousel = document.getElementById('carousel');
 const images = carousel.children;
 const totalImages = images.length;
 let currentIndex = 0;
-const intervalTime = 3000; // 3 seconds for auto slide
+const intervalTime = 60000; 
 
 function nextSlide() {
     currentIndex = (currentIndex + 1) % totalImages;
@@ -37,4 +37,13 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
 });
 
-const displaystate = navbar.style.display;
+function handleMenu() {
+    const navbar = document.getElementById('navbar');
+    const rightPosition = navbar.style.right;
+
+    if (rightPosition === '0px') {
+        navbar.style.right = '-100%';
+    } else {
+        navbar.style.right = '0px';
+    }
+}

@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleMenu() {
     const navbar = document.getElementById('navbar');
     const rightPosition = navbar.style.right;
-    const displaystate = navbar.style.display;
 
 
     if (rightPosition === '0px') {
