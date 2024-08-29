@@ -23,7 +23,7 @@
     <!-- Welcome Section -->
     <section class="container h-auto min-h-[80vh] max-w-5xl mx-auto py-16 px-4 flex flex-col md:flex-row items-center justify-between">
         <div class="text-center md:text-left md:w-1/2 space-y-4">
-            <form action="login" method="POST" class="space-y-4">
+            <form id="loginForm" action="login" method="POST" class="space-y-4">
                 <!-- Username Input -->
                 <div>
                     <label for="username" class="block text-custom_black font-bold mb-2">Username</label>
@@ -36,13 +36,10 @@
                 </div>
                 <!-- Login Button -->
                 <div>
-                    <button href="main-page.html" type="submit" class="w-full bg-dark_orange text-custom_white px-4 py-2 rounded-lg hover:bg-bright_cream hover:text-custom_brown">
-                        <a href="main-page.html">Login</a>
+                    <button type="submit" class="w-full bg-dark_orange text-custom_white px-4 py-2 rounded-lg hover:bg-bright_cream hover:text-custom_brown">
+                        Login
                     </button>
                 </div>
-                <!-- <div class="text-center text-custom_black">
-                    Already got an account? <span class="text-custom_black hover:underline"><a href="Register.html">Register here!</a></span>
-                </div> -->
             </form>
             <!-- Additional Links -->
             <div class="mt-4 text-center">

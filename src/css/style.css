@@ -604,6 +604,10 @@ video {
   bottom: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -789,6 +793,14 @@ video {
 
 .h-96 {
   height: 24rem;
+}
+
+.h-\[20\%\] {
+  height: 20%;
+}
+
+.h-\[50vh\] {
+  height: 50vh;
 }
 
 .h-\[20\%\] {
@@ -1044,6 +1056,11 @@ video {
   border-color: rgb(89 23 0 / var(--tw-border-opacity));
 }
 
+.border-custom_black {
+  --tw-border-opacity: 1;
+  border-color: rgb(89 23 0 / var(--tw-border-opacity));
+}
+
 .border-dark_orange {
   --tw-border-opacity: 1;
   border-color: rgb(189 71 0 / var(--tw-border-opacity));
@@ -1124,9 +1141,23 @@ video {
   background-color: rgb(67 20 7 / var(--tw-bg-opacity));
 }
 
+.bg-red-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-yellow-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
 
 .bg-gradient-to-b {
@@ -1155,6 +1186,12 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-transparent {
+  --tw-gradient-from: transparent var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .via-bright_orange {
   --tw-gradient-to: rgb(249 152 59 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #F9983B var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -1162,6 +1199,10 @@ video {
 
 .to-\[\#ea8b24\] {
   --tw-gradient-to: #ea8b24 var(--tw-gradient-to-position);
+}
+
+.to-black {
+  --tw-gradient-to: #000 var(--tw-gradient-to-position);
 }
 
 .to-black {
@@ -1341,9 +1382,18 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-30 {
+  opacity: 0.3;
 }
 
 .text-gray-700 {
@@ -1643,6 +1693,7 @@ video {
   .md\:text-left {
     text-align: left;
   }
+}
 
   .md\:text-sm {
     font-size: 0.875rem;
