@@ -59,15 +59,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialization for ES Users
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const loginButton = document.getElementById('loginButton');
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
 
-    // Add event listener for keydown on the document
-    document.addEventListener('keydown', function(event) {
-        // Check if the Shift key and the "A" key (keyCode 65) are pressed
-        if (event.shiftKey && event.key === 'A' && event.altKey) {
-            // Redirect to admin login page
-            window.location.href = 'admin-login.html';
-        }
-    });
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    // Check if the username and password are "admin"
+    if (username === "admin" && password === "admin") {
+        window.location.href = "adminpage.html"; // Redirect to admin page
+    } else {
+        window.location.href = "main-page.html"; // Redirect to customer page
+    }
 });

@@ -612,10 +612,6 @@ video {
   right: 0px;
 }
 
-.top-0 {
-  top: 0px;
-}
-
 .top-1\/2 {
   top: 50%;
 }
@@ -754,10 +750,6 @@ video {
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
 .h-40 {
   height: 10rem;
 }
@@ -784,10 +776,6 @@ video {
 
 .h-full {
   height: 100%;
-}
-
-.h-screen {
-  height: 100vh;
 }
 
 .max-h-24 {
@@ -1093,14 +1081,6 @@ video {
 
 .to-dark_cream {
   --tw-gradient-to: #FDC178 var(--tw-gradient-to-position);
-}
-
-.bg-cover {
-  background-size: cover;
-}
-
-.bg-no-repeat {
-  background-repeat: no-repeat;
 }
 
 .object-cover {
