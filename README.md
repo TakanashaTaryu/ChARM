@@ -79,14 +79,14 @@ http://localhost/charm/rent.php
 
 ## Version
 
-- Beta 0.1.0
-  Making new title and description for the project
-  
-- Beta 0.3.0
-  Making new UI/UX design in figma
+- Beta 0.2 Changelog
+1. connect registration with login page
+2. complete forget password page
+3. fixed link when press logo
+4. added picture and fix image scroll in main-page
+5. press alt+shift+a key in Index.html(main page) to enter admin-login.html
+6. connected index with admin login
 
-- Beta 0.5.1
-  Making new database concept
 
 ---
 

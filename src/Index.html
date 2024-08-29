@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page - ChARM</title>
+    <title>Main page - ChARM</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
 
     <!-- Header -->
     <header class="flex justify-between items-center p-4">
-        <a href="#" class="flex gap-2 items-center">
+        <a href="index.html" class="flex gap-2 items-center">
             <img class="max-h-9 w-auto ml-1 md:ml-10"src="asset/logo_Charm.png" alt="logo_Charm">
             <span class="text-lg font-semibold mt-2 text-custom_black">CHARM</span>
         </a>
@@ -34,15 +34,14 @@
                 Proses pemesanan mudah, pengiriman cepat, dan harga terjangkau.
             </p>
             <div class="space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
-                <button class="px-6 py-2 bg-dark_orange text-custom_white rounded-lg hover:bg-bright_cream hover:text-dark_cream">
+                <button id="loginButton" class="px-6 py-2 bg-dark_orange text-custom_white rounded-lg hover:bg-bright_cream hover:text-dark_cream">
                     <a href="login.html">Log In</a>
-                </button>
+                </button>                
                 <button href="Register.html" class="px-6 py-2 text-custom_brown border-2 border-dark_orange rounded-lg hover:bg-bright_cream hover:text-custom_brown hover:border-bright_cream">
                     <a href="Register.html">Sign Up</a>
                 </button>
             </div>
         </div>
-        
         <div class="relative w-full max-w-xs h-64  overflow-hidden rounded-lg shadow-lg">
             <!-- Images -->
             <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
