@@ -6,7 +6,7 @@ ChARM is a website containing a place to rent anime cosplay and other costumes
 
 ## Description
 
-There are 3 accounts, namely admin, courier, and user
+There are 2 accounts, namely admin, courier, and user
 
 The admin's role is to manage user accounts and can also add and subtract costume items and can also view transaction status.
 Users can register and log in and can choose and rent existing costumes, in the rental option they can choose to have the costumes delivered or picked up at the location. If you pick it up, it will issue the shop address. If you choose to deliver it to a certain place, it will enter the address where the user is located for delivery data.
@@ -21,15 +21,35 @@ Revision: For the courier feature, WhatsApp API will be added to provide notific
 
 ## Requirements
 
-- Laragon 6.0 above or any PHP dev enviroment
+- Tailwinds Framework
 - PHP 8.1.10
-- Apache 2.4.54
-- MySQL 8.0.30
 - phpMyAdmin 5.2.1 or above
 
 ---
 
-## Instalation
+## Dev Installation Web
+- Run the framework build or wacth using npm
+```C
+npm run build
+```
+or
+```C
+npm run watch
+```
+
+- Manage to main website with
+```C
+http://127.0.0.1:[your port]/src
+```
+or
+```C
+http://localhost/
+```
+
+
+---
+
+## Dev Instalation Database
 
 - If you using Laragon, go to C:\laragon\www\ChARM
 ```C
@@ -93,11 +113,11 @@ http://localhost/charm/rent.php
 ## Academician
 
 - [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
-  > As a BackEnd dev
+  > As a FrontEnd dev
 - [Umar Zaki Gunawan](https://github.com/marzkigun27) [UZY]
   > As a FrontEnd dev
 - [Dariele Zebada Sanuwu Gea](https://github.com/DrealGea) [DAZ]
-  > As a UI/UX dev
+  > As a FrontEnd dev
 
 ---
 
