@@ -47,3 +47,30 @@ function handleMenu() {
         navbar.style.right = '0px';
     }
 }
+
+
+
+function filterProducts(category) {
+    const categories = document.querySelectorAll('.product-category');
+    categories.forEach((cat) => {
+        if (cat.id === category) {
+            cat.classList.remove('show');
+        } else {
+            cat.classList.add('show');
+        }
+    });
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        if (button.textContent.trim().toLowerCase() === category) {
+            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.add('bg-black', 'text-white');
+        } else {
+            button.classList.remove('bg-black', 'text-white');
+            button.classList.add('bg-gray-200', 'text-black');
+        }
+    });
+}
+
+// Initialize by showing the first category by default
+filterProducts('anime');

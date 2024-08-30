@@ -37,4 +37,17 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
 });
 
-const displaystate = navbar.style.display;
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    // Check if the username and password are "admin"
+    if (username === "admin" && password === "admin") {
+        window.location.href = "adminpage.html"; // Redirect to admin page
+    } else {
+        window.location.href = "main-page.html"; // Redirect to customer page
+    }
+});

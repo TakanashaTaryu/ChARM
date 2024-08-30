@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page - ChARM</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="font-lexend bg-gradient-to-r from-custom_orange via-bright_orange to-dark_cream">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4">
+        <div>
+            <a href="#" class="flex gap-2 items-center">
+                <img class="max-h-9 w-auto ml-1 md:ml-10" src="asset/logo_Charm.png" alt="logo_Charm">
+                <span class="text-lg font-semibold mt-2 text-custom_black">CHARM</span>
+            </a>
+        </div>
+    
+        <!-- Navigation -->
+        <nav class="flex">
+            <ul class="flex items-center space-x-6">
+                <!-- Search Icon -->
+                <li class="">
+                    <a href="#search">
+                        <i class='bx bx-search-alt text-3xl text-custom_black mt-2 hover:scale-110'></i>
+                    </a>
+                </li>
+                <!-- Cart Icon -->
+                <li class="">
+                    <a href="#cart">
+                        <i class='bx bxs-cart text-3xl text-custom_black mt-2 hover:scale-110'></i>
+                    </a>
+                </li>
+                <!-- Heart Icon -->
+                <li class="">
+                    <a href="#favorites">
+                        <i class='bx bx-heart text-3xl text-custom_black mt-2 hover:scale-110'></i>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#favorites">
+                        <i class='bx bx-user text-3xl text-custom_black mt-2 hover:scale-110'></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Carousel Section -->
+    <section class="flex justify-center mt-6 px-4">
+        <div class="relative w-full h-[50vh] overflow-hidden rounded-lg shadow-lg">
+            
+            <!-- Carousel Container -->
+            <div id="carousel" class="relative w-full h-full overflow-hidden">
+                <!-- Carousel Images -->
+                <div class="flex w-full h-full transition-transform duration-500 ease-in-out" style="transform: translateX(0);">
+                    <div class="relative flex-none w-full h-full">
+                        <img src="asset\costume-scrol1.png" alt="Image 1" class="w-full h-full object-cover rounded-lg">
+                        <div class="absolute bottom-0 left-0 w-full h-[20%] bg-gradient-to-b from-transparent to-black opacity-30"></div>
+                    </div>
+                    <div class="relative flex-none w-full h-full">
+                        <img src="asset\costume-scrol2.png" alt="Image 2" class="w-full h-full object-cover rounded-lg">
+                        <div class="absolute bottom-0 left-0 w-full h-[20%] bg-gradient-to-b from-transparent to-black opacity-30"></div>
+                    </div>
+                    <div class="relative flex-none w-full h-full">
+                        <img src="asset\costume-scrol3.png" alt="Image 3" class="w-full h-full object-cover rounded-lg">
+                        <div class="absolute bottom-0 left-0 w-full h-[20%] bg-gradient-to-b from-transparent to-black opacity-30"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Previous Button -->
+            <button id="prevBtn" class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 text-custom_black hover:translate-x-[-0.5rem]">
+                <i class='bx bx-chevron-left text-3xl'></i>
+            </button>
+    
+            <!-- Next Button -->
+            <button id="nextBtn" class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 text-custom_black hover:translate-x-[0.5rem]">
+                <i class='bx bx-chevron-right text-3xl'></i>
+            </button>
+        </div>
+    </section>
+    
+    <script>
+        const carousel = document.getElementById('carousel').querySelector('.flex');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const intervalTime = 3000; // Time in milliseconds (3 seconds)
+        let autoScrollInterval;
+    
+        // Number of images in the carousel
+        const totalImages = carousel.children.length;
+    
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+            }, intervalTime);
+        }
+    
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+    
+        nextBtn.addEventListener('click', () => {
+            stopAutoScroll();
+            if (currentIndex < totalImages - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to the first image
+            }
+            updateCarousel();
+            startAutoScroll();
+        });
+    
+        prevBtn.addEventListener('click', () => {
+            stopAutoScroll();
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalImages - 1; // Loop to the last image
+            }
+            updateCarousel();
+            startAutoScroll();
+        });
+    
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    
+        // Start automatic scrolling when the page loads
+        startAutoScroll();
+    </script>
+    
+    
+    
+
+    <!-- Label Filter Section -->
+    <section class="flex mt-6 px-4">
+        <div class="flex space-x-2">
+            <button class="bg-black text-white px-4 py-2 rounded-md">Anime</button>
+            <button class="bg-gray-200 text-black px-4 py-2 rounded-md">Game</button>
+            <button class="bg-gray-200 text-black px-4 py-2 rounded-md">Furry</button>
+            <button class="bg-gray-200 text-black px-4 py-2 rounded-md">Film</button>
+            <button class="bg-gray-200 text-black px-4 py-2 rounded-md">Original</button>
+            <button class="bg-gray-200 text-black px-4 py-2 rounded-md">Parts</button>
+        </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="mt-6 px-4 flex justify-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-6xl">
+
+            <!-- Product Card 1 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <!-- Image Section -->
+                <div class="bg-gray-300 h-40 relative">
+                    <img src="asset/stok1.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <!-- Text Content -->
+                <div class="p-4">
+                    <span class="bg-black text-white px-2 py-1 rounded-full text-sm">Tersedia</span>
+                    <p class="mt-2 text-sm">Costum 1</p>
+                    <p class="font-semibold">Rp 20.000/hari</p>
+                </div>
+            </div>
+        </div>
+            
+
+            <!-- Product Card 2 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok2.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <p class="mt-2 text-sm">Costum 2</p>
+                    <p class="font-semibold">Rp 15.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 3 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok3.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <p class="mt-2 text-sm">Costum 3</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 4 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok4.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <p class="mt-2 text-sm">Costum 3</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 5 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok5.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <p class="mt-2 text-sm">Nezuko Costume</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 6 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok6.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <p class="mt-2 text-sm">Costume Abah</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <script>
+        function filterProducts(category) {
+            const categories = document.querySelectorAll('.product-category');
+            categories.forEach((cat) => {
+                if (cat.id === category) {
+                    cat.classList.remove('show');
+                } else {
+                    cat.classList.add('show');
+                }
+            });
+
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach((button) => {
+                if (button.textContent.trim().toLowerCase() === category) {
+                    button.classList.remove('bg-gray-200', 'text-black');
+                    button.classList.add('bg-black', 'text-white');
+                } else {
+                    button.classList.remove('bg-black', 'text-white');
+                    button.classList.add('bg-gray-200', 'text-black');
+                }
+            });
+        }
+
+        // Initialize by showing the first category by default
+        filterProducts('anime');
+    </script>
+    <script src="script.js"></script>
+</body>
+  
+</html>

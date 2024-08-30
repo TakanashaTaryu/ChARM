@@ -32,7 +32,7 @@
             <ul class="flex items-center md:space-x-6 max-md:flex-col max-md:items-start max-md:mt-4 max-md:p-5">
                 <!-- Search Bar -->
                 <form action="/search" method="GET" class="inline-block mt-2 w-[100%]">
-                    <input type="text" name="q" placeholder="Search..." class="border rounded-lg px-2 py-1 text-custom_black">
+                    <input type="text" name="q" placeholder="Search Costume..." class="border rounded-lg px-2 py-1 text-custom_black">
                     <button type="submit" class="px-2 py-1 text-white bg-custom_black rounded-lg max-sm:mt-3">Go</button>
                 </form>
                 <!-- home-icon -->
@@ -129,91 +129,137 @@
     </script>
 
     <!-- Product Grid Section -->
-    <section class="container mt-6 px-4 flex justify-center">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-5xl">
-            <!-- Product Card 1 -->
-            <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
-                <div class="h-36 md:h-60 ">
-                    <a href="product-page(miku).html">
-                        <img src="asset/miku.jpg" alt="costum Image" class="">
-                    </a>
-                </div>
-                <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <a href="product-page(miku).html">
-                        <div class="md:mb-4 p-1">
-                            <p class="font-bold max-md:text-sm ">Hatsune Miku</p>
-                        </div>
-                    </a>
-                    <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 20.000/hari</p>
-                </div>
-            </div>
-            <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
-                <div class="h-36 md:h-60 ">
-                    <a href="product-page(gojo).html">
-                        <img src="asset/gojo.png" alt="costum Image" class="">
-                    </a>
-                </div>
-                <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <a href="product-page(gojo).html">
-                        <div class="md:mb-4 p-1">
-                            <p class="font-bold max-md:text-sm ">Gojo</p>
-                        </div>
-                    </a>
-                    <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 35.000/hari</p>
-                </div>
-            </div>
-            <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
-                <div class="h-36 md:h-60 ">
-                    <a href="product-page(godzilla).html">
-                        <img src="asset/godzilla.jpeg" alt="costum Image" class="">
-                    </a>
-                </div>
-                <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <a href="product-page(godzilla).html">
-                        <div class="md:mb-4 p-1">
-                            <p class="font-bold max-md:text-sm ">Godzilla</p>
-                        </div>
-                    </a>
-                    <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 50.000/hari</p>
-                </div>
-            </div>
-            <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
-                <div class="h-36 md:h-60 ">
-                    <a href="product-page(isk).html">
-                        <img src="asset/costume-image-4.jpg" alt="costum Image" class="">
-                    </a>
-                </div>
-                <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <a href="product-page(isk).html">
-                        <div class="md:mb-4 p-1">
-                            <p class="font-bold max-md:text-sm ">Ino-Shika-Cho</p>
-                        </div>
-                    </a>
-                    <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 150.000/hari</p>
-                </div>
-            </div>
-            <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
-                <div class="h-36 md:h-60 ">
-                    <a href="product-page(tls).html">
-                        <img src="asset/costume-image=5.png" alt="costum Image" class="">
-                    </a>
-                </div>
-                <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <a href="product-page(tls).html">
-                        <div class="md:mb-4 p-1">
-                            <p class="font-bold max-md:text-sm ">Three Legendary Sannin</p>
-                        </div>
-                    </a>
-                    <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 150.000/hari</p>
-                </div>
-            </div>
-           
+    <section class="mt-6 px-4 flex justify-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-6xl">
 
+            <!-- Product Card 1 -->
+        <div id="anime" class="product-category" href="product-page(nagaungu).html">
+            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product-page(nagaungu).html">
+                <!-- Image Section -->
+                <div class="bg-gray-300 h-40 relative">
+                    <a href="product-page(nagaungu).html">
+                    <img src="asset/stok1.png" alt="Description" class="w-full h-full object-cover">
+                    </a>
+                </div>
+                <!-- Text Content -->
+                <div class="p-4">
+                    <a class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">Available</a>
+                            <p class="font-bold max-md:text-sm ">Naga Ungu</p>
+                    <p class="font-semibold">Rp 20.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+
+            
+        <div id="anime" class="product-category" href="product-page(nagaungu).html">
+            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product-page(miku).html">
+                <!-- Image Section -->
+                <div class="bg-gray-300 h-40 relative">
+                    <a href="product-page(miku).html">
+                    <img src="asset/miku.jpg" alt="Description" class="w-full h-full object-cover">
+                    </a>
+                </div>
+                <!-- Text Content -->
+                <div class="p-4">
+                    <span class="bg-red-700 text-white px-2 py-1 rounded-full text-sm">Out of Stock</span>
+                            <p class="font-bold max-md:text-sm ">Hatsune Miku</p>
+                    <p class="font-semibold">Rp 20.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="anime" class="product-category" href="product-page(nagaungu).html">
+            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product-page(gojo).html">
+                <!-- Image Section -->
+                <div class="bg-gray-300 h-40 relative">
+                    <a href="product-page(gojo).html">
+                    <img src="asset/gojo.png" alt="Description" class="w-full h-full object-cover">
+                    </a>
+                </div>
+                <!-- Text Content -->
+                <div class="p-4">
+                    <span class=" bg-yellow-500 text-white px-2 py-1 rounded-full text-sm">Remaining 1</span>
+                            <p class="font-bold max-md:text-sm ">Gojo Satoru</p>
+                    <p class="font-semibold">Rp 20.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Product Card 2 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok2.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <span class="bg-red-700 text-white px-2 py-1 rounded-full text-sm">Out of Stock</span>
+                    <p class="font-bold max-md:text-sm ">Kucing Cream</p>
+                    <p class="font-semibold">Rp 15.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 3 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok3.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <a class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">Available</a>
+
+                    <p class="font-bold max-md:text-sm ">Wolf Hijau</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 4 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok4.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <a class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">Available</a>
+
+                    <p class="font-bold max-md:text-sm ">Devil Rabbit</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 5 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok5.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <span class=" bg-yellow-500 text-white px-2 py-1 rounded-full text-sm">Remaining 1</span>
+                    <p class="font-bold max-md:text-sm ">Nezuko</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
+
+            <!-- Product Card 6 -->
+        <div id="anime" class="product-category">
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <div class="bg-gray-300 h-40">
+                    <img src="asset/stok6.png" alt="Description" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <a class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">Available</a>
+
+                    <p class="font-bold max-md:text-sm ">Zhongli Genshin</p>
+                    <p class="font-semibold">Rp 25.000/hari</p>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
