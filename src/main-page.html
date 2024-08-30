@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page - ChARM</title>
+    <title>Home Page - ChARM</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,12 +28,12 @@
             </button>
         </div>
         <!-- navbar -->
-        <nav id="navbar" class="flex max-md:fixed max-md:right-[-100%] max-md:top-16 max-md:p-5 transition-[right] max-md:w-[60vw] max-md:bg-custom_white  duration-300 ease-in-out z-10">
+        <nav id="navbar" class="flex max-md:fixed max-md:right-[-100%] max-md:top-16 max-md:p-5 transition-[right] max-sm:w-[70%] max-md:w-[60%] max-md:bg-custom_white  duration-300 ease-in-out z-10">
             <ul class="flex items-center md:space-x-6 max-md:flex-col max-md:items-start max-md:mt-4 max-md:p-5">
                 <!-- Search Bar -->
                 <form action="/search" method="GET" class="inline-block mt-2 w-[100%]">
                     <input type="text" name="q" placeholder="Search..." class="border rounded-lg px-2 py-1 text-custom_black">
-                    <button type="submit" class="px-2 py-1 text-white bg-custom_black rounded-lg">Go</button>
+                    <button type="submit" class="px-2 py-1 text-white bg-custom_black rounded-lg max-sm:mt-3">Go</button>
                 </form>
                 <!-- home-icon -->
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
@@ -57,7 +57,7 @@
 
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="#favorites">
+                    <a href="account-setting-page.html">
                         <i class='bx bx-user text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Account</p>
@@ -105,14 +105,28 @@
     <!-- Label Filter Section -->
     <section class="flex mt-6 px-4">
         <div class="flex flex-wrap space-x-2 my-8 md:ml-10 ">
-            <button class="bg-custom_black text-white px-4 py-2 my-2 rounded-md">Anime</button>
-            <button class="bg-gray-200 text-black px-4 py-2 my-2 rounded-md">Game</button>
-            <button class="bg-gray-200 text-black px-4 py-2 my-2 rounded-md">Furry</button>
-            <button class="bg-gray-200 text-black px-4 py-2 my-2 rounded-md">Film</button>
-            <button class="bg-gray-200 text-black px-4 py-2 my-2 rounded-md">Original</button>
-            <button class="bg-gray-200 text-black px-4 py-2 my-2 rounded-md">Parts</button>
+            <button class="btn bg-dark_cream  text-custom_brown px-4 py-2 my-2 rounded-md ">Anime</button>
+            <button class="btn bg-dark_cream text-custom_brown px-4 py-2 my-2 rounded-md">Game</button>
+            <button class="btn bg-dark_cream text-custom_brown px-4 py-2 my-2 rounded-md">Furry</button>
+            <button class="btn bg-dark_cream text-custom_brown px-4 py-2 my-2 rounded-md">Film</button>
+            <button class="btn bg-dark_cream text-custom_brown px-4 py-2 my-2 rounded-md">Original</button>
+            <button class="btn bg-dark_cream text-custom_brown px-4 py-2 my-2 rounded-md">Parts</button>
         </div>
     </section>
+    <script>
+        const buttons = document.querySelectorAll('.btn');
+        // Remove class from all buttons
+        buttons.forEach(btn => btn.classList.remove('bg-dark_cream', 'text-custom_brown'));
+        buttons.forEach(btn => btn.classList.add('bg-dark_cream', 'text-custom_brown'));
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                buttons.forEach(btn => btn.classList.remove('bg-custom_orange', 'text-custom_white'));
+                // Add 'active' class to the clicked button
+                this.classList.add('bg-custom_orange', 'text-custom_white');
+            });
+        });
+    </script>
 
     <!-- Product Grid Section -->
     <section class="container mt-6 px-4 flex justify-center">
@@ -120,52 +134,85 @@
             <!-- Product Card 1 -->
             <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
                 <div class="h-36 md:h-60 ">
-                    <img src="asset/miku.jpg" alt="costum Image" class="">
+                    <a href="product-page(miku).html">
+                        <img src="asset/miku.jpg" alt="costum Image" class="">
+                    </a>
                 </div>
                 <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <div class="md:mb-4 p-1">
-                        <p class="font-bold max-md:text-sm "><a href="product-page.html">Miku</a></p>
-                    </div>
+                    <a href="product-page(miku).html">
+                        <div class="md:mb-4 p-1">
+                            <p class="font-bold max-md:text-sm ">Hatsune Miku</p>
+                        </div>
+                    </a>
                     <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
                     <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 20.000/hari</p>
                 </div>
             </div>
             <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
                 <div class="h-36 md:h-60 ">
-                    <img src="asset/gojo.png" alt="costum Image">
+                    <a href="product-page(gojo).html">
+                        <img src="asset/gojo.png" alt="costum Image" class="">
+                    </a>
                 </div>
                 <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <div class="md:mb-4 p-1">
-                        <p class="font-bold max-md:text-sm ">gojo</p>
-                    </div>
+                    <a href="product-page(gojo).html">
+                        <div class="md:mb-4 p-1">
+                            <p class="font-bold max-md:text-sm ">Gojo</p>
+                        </div>
+                    </a>
                     <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 20.000/hari</p>
+                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 35.000/hari</p>
                 </div>
             </div>
             <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
                 <div class="h-36 md:h-60 ">
-                    <img src="asset/godzilla.jpeg" alt="costum Image">
+                    <a href="product-page(godzilla).html">
+                        <img src="asset/godzilla.jpeg" alt="costum Image" class="">
+                    </a>
                 </div>
                 <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <div class="md:mb-4 p-1">
-                        <p class="font-bold max-md:text-sm ">godzilla</p>
-                    </div>
+                    <a href="product-page(godzilla).html">
+                        <div class="md:mb-4 p-1">
+                            <p class="font-bold max-md:text-sm ">Godzilla</p>
+                        </div>
+                    </a>
                     <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 20.000/hari</p>
+                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 50.000/hari</p>
                 </div>
             </div>
             <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
                 <div class="h-36 md:h-60 ">
-                    <img src="asset/costume-image-4.jpg" alt="costum Image">
+                    <a href="product-page(isk).html">
+                        <img src="asset/costume-image-4.jpg" alt="costum Image" class="">
+                    </a>
                 </div>
                 <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
-                    <div class="md:mb-4 p-1">
-                        <p class="font-bold max-md:text-sm ">Ino-Shika-Cho</p>
-                    </div>
+                    <a href="product-page(isk).html">
+                        <div class="md:mb-4 p-1">
+                            <p class="font-bold max-md:text-sm ">Ino-Shika-Cho</p>
+                        </div>
+                    </a>
                     <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
-                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 20.000/hari</p>
+                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 150.000/hari</p>
                 </div>
             </div>
+            <div class="bg-custom_white shadow-md rounded-md overflow-hidden group max-md:max-h-60">
+                <div class="h-36 md:h-60 ">
+                    <a href="product-page(tls).html">
+                        <img src="asset/costume-image=5.png" alt="costum Image" class="">
+                    </a>
+                </div>
+                <div class="relative bg-custom_white md:bottom-[-25%] group-hover:bottom-0 transition-all duration-300 p-1 md:p-4 cursor-pointer">
+                    <a href="product-page(tls).html">
+                        <div class="md:mb-4 p-1">
+                            <p class="font-bold max-md:text-sm ">Three Legendary Sannin</p>
+                        </div>
+                    </a>
+                    <span class="bg-custom_black text-white px-2 py-1 rounded-full text-xs md:text-sm ml-1">Tersedia</span>
+                    <p class="font-semibold py-2 ml-1 max-md:text-sm">Rp 150.000/hari</p>
+                </div>
+            </div>
+           
 
         </div>
     </section>

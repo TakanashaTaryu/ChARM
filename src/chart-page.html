@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page - ChARM</title>
+    <title>Chart page - ChARM</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,12 +28,12 @@
             </button>
         </div>
         <!-- navbar -->
-        <nav id="navbar" class="flex max-md:fixed max-md:right-[-100%] max-md:top-16 max-md:p-5 transition-[right] max-md:w-[60vw] max-md:bg-custom_white  duration-300 ease-in-out z-10">
+        <nav id="navbar" class="flex max-md:fixed max-md:right-[-100%] max-md:top-16 max-md:p-5 transition-[right] max-sm:w-[70%] max-md:w-[60%] max-md:bg-custom_white  duration-300 ease-in-out z-10">
             <ul class="flex items-center md:space-x-6 max-md:flex-col max-md:items-start max-md:mt-4 max-md:p-5">
                 <!-- Search Bar -->
                 <form action="/search" method="GET" class="inline-block mt-2 w-[100%]">
                     <input type="text" name="q" placeholder="Search..." class="border rounded-lg px-2 py-1 text-custom_black">
-                    <button type="submit" class="px-2 py-1 text-white bg-custom_black rounded-lg">Go</button>
+                    <button type="submit" class="px-2 py-1 text-white bg-custom_black rounded-lg max-sm:mt-3">Go</button>
                 </form>
                 <!-- home-icon -->
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
@@ -57,7 +57,7 @@
 
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="#favorites">
+                    <a href="account-setting-page.html">
                         <i class='bx bx-user text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Account</p>
@@ -93,7 +93,35 @@
                                     </select>
                                 </div>
                             </form>
-                            <span class="text-custom_black font-bold">Rp 30.000</span>
+                            <span class="text-custom_black font-bold">Rp 35.000</span>
+                        </div>
+                        <button class="bg-bright_orange hover:bg-gray-300 text-custom_white font-bold py-2 px-4 rounded mt-4">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 mt-6 flex flex-col sm:flex-row sm:justify-between">
+                    <div class="h-52 sm:h-10 w-auto max-sm:overflow-hidden">
+                        <img src="asset/gojo.png" alt="costum Image" class="w-full h-48 object-cover rounded-lg mb-4">
+                    </div>
+                    <div class="sm:w-80 ml-4">
+                        <h2 class="text-lg font-bold text-custom_black mb-2">Gojo</h2>
+                        <p class="text-dark_orange b-4 text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam odit quibusdam eaque vitae voluptate esse maiores modi placeat quia molestias sit possimus provident labore nulla, quidem reiciendis aliquam ab corporis!</p>
+                        <div class="flex max-sm:flex-col sm:items-center sm:justify-between">
+                            <form action="#">
+                                <div class="mb-4">
+                                    <label for="durasi" class="block text-dark_brown my-2">Renting time</label>
+                                    <select id="durasi" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange">
+                                        <option value="">Chose Renting Time</option>
+                                        <option value="1">1 day</option>
+                                        <option value="2">2 day</option>
+                                        <option value="3">3 day</option>
+                                        <option value="3">1 week</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <span class="text-custom_black font-bold">Rp 50.000</span>
                         </div>
                         <button class="bg-bright_orange hover:bg-gray-300 text-custom_white font-bold py-2 px-4 rounded mt-4">
                             Remove
@@ -106,7 +134,7 @@
                 <h2 class="text-xl font-bold text-custom_black mb-4">Order Summary</h2>
                 <div class="flex items-center justify-between mb-4">
                     <span class="text-custom_brown">Subtotal</span>
-                    <span class="text-dark_brown font-bold">Rp 30.000</span>
+                    <span class="text-dark_brown font-bold">Rp 85.000</span>
                 </div>
                 <div class="flex items-center justify-between mb-4">
                     <span class="text-custom_brown">Shipping</span>
@@ -121,7 +149,7 @@
                 <hr class="border-gray-300 mb-4">
                 <div class="flex items-center justify-between">
                     <span class="text-xl font-bold text-custom_brown">Total</span>
-                    <span class="text-xl font-bold text-dark_brown">Rp 30.000</span>
+                    <span class="text-xl font-bold text-dark_brown">Rp 85.000</span>
                 </div>
                 <button class="bg-dark_cream hover:bg-gray-300 text-custom_orange font-bold py-3 px-6 rounded mt-6">
                     <a href="checkout-page.html">Checkout</a>
