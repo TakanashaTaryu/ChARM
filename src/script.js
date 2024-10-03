@@ -1,3 +1,4 @@
+// Carousel functionality
 const carousel = document.getElementById('carousel').querySelector('.flex');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -21,22 +22,14 @@ function stopAutoScroll() {
 
 nextBtn.addEventListener('click', () => {
     stopAutoScroll();
-    if (currentIndex < totalImages - 1) {
-        currentIndex++;
-    } else {
-        currentIndex = 0; // Loop back to the first image
-    }
+    currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
     updateCarousel();
     startAutoScroll();
 });
 
 prevBtn.addEventListener('click', () => {
     stopAutoScroll();
-    if (currentIndex > 0) {
-        currentIndex--;
-    } else {
-        currentIndex = totalImages - 1; // Loop to the last image
-    }
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
     updateCarousel();
     startAutoScroll();
 });
@@ -48,32 +41,33 @@ function updateCarousel() {
 // Start automatic scrolling when the page loads
 startAutoScroll();
 
-document.addEventListener('DOMContentLoaded', function() {
+// Form validation (if necessary)
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
-    const errorMessage = document.createElement('p');
-    errorMessage.className = 'text-red-500 mt-2';
-    form.appendChild(errorMessage);
-  
-    form.addEventListener('submit', function(event) {
-      const newPassword = document.getElementById('new-password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-  
-      if (newPassword === confirmPassword) {
-        errorMessage.textContent = '';
-        window.location.href = 'login.html';
-      } else {
-        event.preventDefault(); // Prevent form submission
-        errorMessage.textContent = 'Passwords do not match. Please try again.';
-      }
-    });
-  });
+    if (form) {
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'text-red-500 mt-2';
+        form.appendChild(errorMessage);
 
-  // Initialization for ES Users
+        form.addEventListener('submit', function (event) {
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
 
+            if (newPassword === confirmPassword) {
+                errorMessage.textContent = '';
+                window.location.href = 'login.php';
+            } else {
+                event.preventDefault(); // Prevent form submission
+                errorMessage.textContent = 'Passwords do not match. Please try again.';
+            }
+        });
+    }
+});
+
+// Menu toggling for mobile view
 function handleMenu() {
     const navbar = document.getElementById('navbar');
     const rightPosition = navbar.style.right;
-
 
     if (rightPosition === '0px') {
         navbar.style.right = '-100%';
@@ -82,7 +76,36 @@ function handleMenu() {
     }
 }
 
+// Search bar toggling
 function toggleSearchBar() {
     const searchBar = document.getElementById('searchBar');
-    searchBar.classList.toggle('hidden');
+    if (searchBar) {
+        searchBar.classList.toggle('hidden');
+    }
 }
+
+// OTP Section Handling (if relevant)
+function showOtpSection(event) {
+    event.preventDefault();  // Prevent form from submitting immediately
+
+    // Hide email input and send OTP button
+    document.getElementById('email-section').style.display = 'none';
+    document.getElementById('send-otp-section').style.display = 'none';
+
+    // Show OTP input and verify OTP button
+    document.getElementById('otp-section').style.display = 'block';
+}
+
+// Another form submission handler (for an alternate form, if present)
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function (event) {
+        const newPassword = document.getElementById('new-password');
+        const confirmPassword = document.getElementById('confirm-password');
+
+        if (newPassword && confirmPassword && newPassword.value !== confirmPassword.value) {
+            event.preventDefault(); // Prevent form submission
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = 'Passwords do not match. Please try again.';
+        }
+    });
+});
