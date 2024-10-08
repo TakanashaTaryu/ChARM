@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send_otp'])) {
             // Isi email
             $mail->isHTML(true);
             $mail->Subject = 'Your OTP Code';
-            $mail->Body    = 'Here is your OTP code: <b>' . $otp . '</b>';
-            $mail->AltBody = 'Here is your OTP code: ' . $otp;
+            $mail->Body    = 'password change action detected, ignore this email if it is not from you. Here is your OTP code: <b>' . $otp . '</b>';
+            $mail->AltBody = 'password change action detected, ignore this email if it is not from you. Here is your OTP code: ' . $otp;
 
             $mail->send();
             $message = 'OTP has been sent to your email!';
@@ -90,12 +90,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verify_otp'])) {
 
         // OTP verified successfully, proceed to password recovery
         unset($_SESSION['otp']); // Hapus sesi OTP setelah verifikasi
-        header("Location: recovery_password.html");
+        
+        // Redirect ke recovery_password.php dengan email di query parameter
+        header("Location: recovery_password.php?email=" . urlencode($email));
         exit();
     } else {
         $message = "Invalid OTP!";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -194,5 +197,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verify_otp'])) {
         </div>
     </section>
     <script src="script_login-page.js"></script>
+    <script>
+const carousel = document.getElementById('carousel');
+const images = carousel.children;
+const totalImages = images.length;
+let currentIndex = 0;
+const intervalTime = 3000; // 3 seconds for auto slide
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalImages;
+    updateCarousel();
+}
+
+// Function to move to the previous image
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+    updateCarousel();
+}
+
+// Update carousel position
+function updateCarousel() {
+    const offset = -currentIndex * 100; // Adjust to move images horizontally
+    carousel.style.transform = `translateX(${offset}%)`;
+}
+
+// Auto-slide functionality
+let autoSlide = setInterval(nextSlide, intervalTime);
+
+// Event listeners for manual control
+document.getElementById('nextBtn').addEventListener('click', () => {
+    clearInterval(autoSlide); // Stop auto-slide on manual click
+    nextSlide();
+    autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+    clearInterval(autoSlide); // Stop auto-slide on manual click
+    prevSlide();
+    autoSlide = setInterval(nextSlide, intervalTime); // Restart auto-slide after interaction
+});</script>
 </body>
 </html>

@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE username='$username'";
+    $sql = "SELECT user_id, username, password, admin_value FROM users WHERE username='$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -31,14 +31,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['is_logged_in'] = true;
 
             if ($user['admin_value'] == 1) {
-                header("Location: adminpage.html");
+                header("Location: adminpage.php");
                 exit();
             } else {
-                header("Location: main_page.html");
+                header("Location: main_page.php");
                 exit();
             }
         } else {

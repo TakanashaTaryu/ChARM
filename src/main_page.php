@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +24,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
+<?php
+echo $user_id;
+echo $username;
+?>
+
 <body class="font-lexend bg-gradient-to-r from-custom_orange via-bright_orange to-dark_cream">
 
     <!-- Header -->
@@ -37,7 +56,7 @@
                 </form>
                 <!-- home-icon -->
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="main_page.html">
+                    <a href="main_page.php">
                         <i class='bx bx-home-alt text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Home</p>

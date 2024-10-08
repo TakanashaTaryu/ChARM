@@ -1,16 +1,30 @@
+<?php
+session_start();
+
+// Cek apakah pengguna sudah login dan adalah admin
+if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true || !isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit();
+}
+
+// Ambil username dari session
+$username = $_SESSION['username'];
+
+// Menampilkan halaman admin
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Costumes | ChARM</title>
+    <title>Admin Page | ChARM</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body class="font-[lexend] bg-gradient-to-r from-orange-600 to-[#ea8b24]">
+<body class="font-[lexend] bg-gradient-to-r from-orange-600 to-[#ea8b24]"> 
     <header class="flex justify-between items-center p-4 bg-orange-950">
         <a href="#" class="flex gap-2 items-center">
             <img class="max-h-9 w-auto ml-1 md:ml-10" src="./asset/logo_Charm.png" alt="logo_Charm">
@@ -38,59 +52,46 @@
             </div>
         </nav>
     </header>
-    <section class="container flex justify-start">
-        <div class="bg-orange-700  text-orange-200 min-h-[100vh]">
-            <p class="mx-5 mt-5"><a href="./costumes.html">All Costumes</a></p>
-            <hr class="m-2">
-            <p class="mx-5"><a href="./coswoman.html">Woman Costumes</a></p>
-            <hr class="m-2">
-            <p class="mx-5"><a href="./cosman.html">Man Costumes</a></p>
-            <hr class="m-2">
-            <p class="mx-5"><a href="./cosothers.html">Other Costumes</a></p>
-            <hr class="m-2">
-        </div>
-        <div class="flex flex-col">
-            <div class="text-white text-left text-3xl my-5 mx-7">
-                <h1 class="font-bold"><b>All Costumes</b></h1>
-            </div>
-            <div class="mx-5">
-                <a href="./cosinfo1.html">
-                <button class="bg-orange-200 rounded p-5 m-5">
-                    <p><img class="max-h-64 w-auto m-1 rounded" src="./asset/toga1.jpg" alt=""></p>
-                    <p>Himiko Toga</p>
-                    <p class="font-bold">Available</p>
-                </button>
-                </a>
-                <a href="./cosinfo2.html">
-                <button class="bg-orange-200 rounded p-5 m-5">
-                    <p><img class="max-h-64 w-auto m-1 rounded" src="./asset/miku.jpg" alt=""></p>
-                    <p>Hatsune Miku</p>
-                    <p class="font-bold">Rented</p>
-                </button>
-                </a>
-                <a href="./cosinfo3.html">
-                <button class="bg-orange-200 rounded p-5 m-5">
-                    <p><img class="max-h-64 w-auto m-1 rounded" src="./asset/gojo.png" alt=""></p>
-                    <p>Gojo Satoru</p>
-                    <p class="font-bold">Available</p>
-                </button>
-                </a>
-                <a href="./cosinfo4.html">
-                <button class="bg-orange-200 rounded p-5 m-5">
-                    <p><img class="max-h-64 w-auto m-1 rounded" src="./asset/godzilla.jpeg" alt=""></p>
-                    <p>Godzilla</p>
-                    <p class="font-bold">Available</p>
-                </button>
-                </a>
-            </div>
+    <section class="container flex flex-col items-center mt-10">
+        <div class="text-white text-center text-3xl">
+            <h1 class="font-bold"><b>Costumes</b></h1>
+            <p>Manage all available costumes</p>
         </div>
     </section>
-    <section class="flex justify-normal items-center mb-5 bg-orange-950 h-auto w-auto">
+    <section class="flex flex-col justify-between items-center my-10">
+        <ul class="flex items-center gap-[4vw]">
+            <li class="text-white text-center text-xl">
+                <a href="./coswoman.html">
+                    <button>
+                        <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/miku.jpg" alt="wanita">
+                    </button>
+                    <p>Woman Costumes</p>
+                </a>
+            </li>
+            <li class="text-white text-center text-xl">
+                <a href="./cosman.html">
+                    <button>
+                        <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/gojo.png" alt="pria">
+                    </button>
+                    <p>Man Costumes</p>
+                </a>
+            </li>
+            <li class="text-white text-center text-xl">
+                <a href="./cosothers.html">
+                    <button>
+                        <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/godzilla.jpeg" alt="other">
+                    </button>
+                    <p>Other costumes</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section class="flex justify-normal items-center my-5 bg-orange-950 h-auto w-auto">
         <div>
             <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/Pas foto formal fixed.jpg" alt="foto">
         </div>
         <div class="text-white">
-            <h1><b>DAZ</b></h1>
+            <h1><b><?php echo htmlspecialchars($username); ?></b></h1>
             <div class="bg-blue-600 rounded max-w-max">Admin</div>
             <p>Welcome to ChARM Admin Panel</p>
         </div>
