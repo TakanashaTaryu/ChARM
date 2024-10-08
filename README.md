@@ -81,31 +81,20 @@ DB_PASSWORD=admin
 
 - Manage to website to test the database using
 ```C
-http://localhost/charm/test_db.php
+http://localhost/charm/src
 ```
-if you running right, it will the massage that the databse running properly and you ready to go
-
-- You can access the php function avaible
-```C
-http://localhost/charm/
-http://localhost/charm/register.php
-http://localhost/charm/login.php
-http://localhost/charm/rent.php
-```
-
-- if you didnt use Laragon for PHP dev enviroment, we provide 'charm_db.sql' to open instantly
+if it manage to Main Page, congrats you can running it
 
 ---
 
 ## Version
 
-- Beta 0.2 Changelog
-1. connect registration with login page
-2. complete forget password page
-3. fixed link when press logo
-4. added picture and fix image scroll in main-page
-5. press alt+shift+a key in Index.html(main page) to enter admin-login.html
-6. connected index with admin login
+- Beta 1.2 Changelog
+1. add full schematic database
+2. user can register and login
+3. admin can access admin page via login user (username & password = admin)
+4. user can change password using email OTP that user input when register (email from tatsuarieyu@gmail.com)
+5. index.php have some issue with script.js (it didnt detect location of script.js soo theres <script></script> in .php
 
 
 ---
