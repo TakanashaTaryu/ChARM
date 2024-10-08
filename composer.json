@@ -2,7 +2,8 @@
     "require": {
         "php": "^8.1",
         "phpmailer/phpmailer": "^6.9",
-        "phpgangsta/googleauthenticator": "dev-master"
+        "phpgangsta/googleauthenticator": "dev-master",
+        "midtrans/midtrans-php": "^2.6"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -118,6 +118,7 @@
     <!-- External Script -->
     <script src="../src/script.js"></script>
     <script src="script_login-page.js"></script>
+    <script src="C:\laragon\www\ChARM\src\script.js"></script>
 
 </body>
 </html>
