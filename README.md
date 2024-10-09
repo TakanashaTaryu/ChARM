@@ -41,10 +41,6 @@ npm run watch
 ```C
 http://127.0.0.1:[your port]/src
 ```
-or
-```C
-http://localhost/
-```
 
 
 ---
@@ -79,22 +75,31 @@ DB_PASSWORD=admin
 
 - Run Laragon or any PHP dev enviroment
 
+- Database instalas
+```C
+open charm/database/charm_db.sql
+open database manager (xampp or laragon or any)
+import charm_db.sql inside your database manager console
+```
+
 - Manage to website to test the database using
 ```C
 http://localhost/charm/src
 ```
 if it manage to Main Page, congrats you can running it
 
+
+
 ---
 
 ## Version
 
-- Beta 1.2 Changelog
-1. add full schematic database
-2. user can register and login
-3. admin can access admin page via login user (username & password = admin)
-4. user can change password using email OTP that user input when register (email from tatsuarieyu@gmail.com)
-5. index.php have some issue with script.js (it didnt detect location of script.js soo theres <script></script> in .php
+- Beta 1.9
+  1. user now can register and login as user or admin (depends of their access)
+  2. any user can forget password using email (with phpmailerm *tatsuarieyu@gmail.com as mail service)
+  3. dev can manage user that can access admin page with using database manager
+  4. 
+  5. 
 
 
 ---
