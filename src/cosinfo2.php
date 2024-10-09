@@ -1,9 +1,23 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Godzilla | ChARM</title>
+    <title>Hatsune Miku | ChARM</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,10 +37,10 @@
                         <a class="hover:text-orange-500" href="./adminpage.php">Home</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./costumes.html">Costumes</a>
+                        <a class="hover:text-orange-500" href="./costumes.php">Costumes</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./addcos.html">Add Costumes</a>
+                        <a class="hover:text-orange-500" href="./addcos.php">Add Costumes</a>
                     </li>
                     <li>
                         <a class="hover:text-orange-500" href="./statcos.html">Status</a>
@@ -41,18 +55,15 @@
         </header>
         <section class="flex justify-between items-center p-4 my-3 mx-3">
             <div class="flex items-center">
-                <img class="max-h-52 rounded-full w-auto ml-1 md:ml-10" src="./asset/godzilla.jpeg" alt="toga">
+                <img class="max-h-52 rounded-full w-auto ml-1 md:ml-10" src="./asset/miku.jpg" alt="toga">
                 <div>
-                    <p class="text-3xl font-semibold mt-2 ml-5 text-white ">Godzilla</p>
+                    <p class="text-3xl font-semibold mt-2 ml-5 text-white ">Hatsune Miku</p>
                     <ul class="flex justify-normal items-start">
                         <li>
                             <p class="bg-blue-600 rounded max-w-max text-white ml-5 my-2 px-2">Sci-fi</p>
                         </li>
                         <li>
-                            <p class="bg-blue-600 rounded max-w-max text-white ml-5 my-2 px-2">Halloween</p>
-                        </li>
-                        <li>
-                            <p class="bg-blue-600 rounded max-w-max text-white ml-2 my-2 px-2">Other</p>
+                            <p class="bg-blue-600 rounded max-w-max text-white ml-2 my-2 px-2">Woman</p>
                         </li>
                     </ul>
                 </div>
@@ -61,7 +72,7 @@
                 <div class="flex items-center">
                     <ul class="flex items-center">
                         <li>
-                            <p class="bg-orange-800 text-white px-4 py-2 rounded mx-5">Status : Available</p>
+                            <p class="bg-orange-800 text-white px-4 py-2 rounded mx-5">Status : Rented</p>
                         </li>
                         <li>
                             <button class="bg-white text-black px-4 py-2 rounded hover:bg-black hover:text-white">Change Status</button>
@@ -73,11 +84,11 @@
         <section class="flex justify-normal items-center p-4 my-3 mx-3">
             <div class="ml-6">
                 <div class="rounded-t bg-orange-300">
-                    <img class="max-h-96 w-auto rounded-t" src="./asset/godzilla2.jpg" alt="">
+                    <img class="max-h-96 w-auto rounded-t" src="./asset/miku2.jpg" alt="">
                 </div>
                 <div class="bg-orange-800 rounded-b p-5 text-white">
-                    <p>Size XL</p>
-                    <p class="text-xl"><b>Rp 150.000/day</b></p>
+                    <p>Size M</p>
+                    <p class="text-xl"><b>Rp 100.000/day</b></p>
                 </div>
                 <div class="text-center my-3">
                     <button class="bg-black text-white px-4 py-2 rounded hover:bg-white hover:text-black mr-1">Delete Costume</button>
@@ -94,7 +105,7 @@
                 <div class="border-2 border-orange-950 bg-orange-300 justify-start">
                     <ul class="flex justify-normal items-center">
                         <li>
-                            <img class="max-h-28 w-auto m-1 rounded md:m-10" src="./asset/godzilla.jpeg" alt="">
+                            <img class="max-h-28 w-auto m-1 rounded md:m-10" src="./asset/miku.jpg" alt="">
                         </li>
                         <li>
                             <p class="text-3xl"><b>Costume Only</b></p>

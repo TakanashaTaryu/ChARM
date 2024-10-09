@@ -1,3 +1,16 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +36,10 @@
                         <a class="hover:text-orange-500" href="./adminpage.php">Home</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./costumes.html">Costumes</a>
+                        <a class="hover:text-orange-500" href="./costumes.php">Costumes</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./addcos.html">Add Costumes</a>
+                        <a class="hover:text-orange-500" href="./addcos.php">Add Costumes</a>
                     </li>
                     <li>
                         <a class="hover:text-orange-500" href="./statcos.html">Status</a>

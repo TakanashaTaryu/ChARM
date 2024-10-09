@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav class="flex">
             <ul class="flex items-center space-x-6">
                 <li><a href="main_page.php"><i class='bx bx-home-alt text-3xl text-custom_black'></i></a></li>
-                <li><a href="chart-page.html"><i class='bx bx-shopping-bag text-3xl text-custom_black'></i></a></li>
+                <li><a href="chart-page.php"><i class='bx bx-shopping-bag text-3xl text-custom_black'></i></a></li>
                 <li><a href="whistlist-page.html"><i class='bx bx-heart text-3xl text-custom_black'></i></a></li>
                 <li><a href="account_setting_page.php"><i class='bx bx-user text-3xl text-custom_black'></i></a></li>
             </ul>
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Logout Button -->
     <div class="fixed bottom-4 right-4">
         <form action="logout.php" method="POST">
-            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
+            <button type="submit" class="text-custom_brown hover:underline px-4 py-2 rounded-lg">Logout</button>
         </form>
     </div>
 

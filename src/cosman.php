@@ -1,3 +1,16 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +36,10 @@
                         <a class="hover:text-orange-500" href="./adminpage.php">Home</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./costumes.html">Costumes</a>
+                        <a class="hover:text-orange-500" href="./costumes.php">Costumes</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./addcos.html">Add Costumes</a>
+                        <a class="hover:text-orange-500" href="./addcos.php">Add Costumes</a>
                     </li>
                     <li>
                         <a class="hover:text-orange-500" href="./statcos.html">Status</a>
@@ -34,6 +47,7 @@
                     <li>
                         <button class="bg-white text-black px-4 py-2 rounded-full hover:bg-black hover:text-white" href="./index.php"><a href="./index.php">Log Out </a></button>
 
+                        
                     </li>
                 </ul>
             </div>
@@ -41,24 +55,24 @@
     </header>
     <section class="container flex justify-start">
         <div class="bg-orange-700  text-orange-200 min-h-[100vh]">
-            <p class="mx-5 mt-5"><a href="./costumes.html">All Costumes</a></p>
+            <p class="mx-5 mt-5"><a href="./costumes.php">All Costumes</a></p>
             <hr class="m-2">
-            <p class="mx-5"><a href="./coswoman.html">Woman Costumes</a></p>
+            <p class="mx-5"><a href="./coswoman.php">Woman Costumes</a></p>
             <hr class="m-2">
-            <p class="mx-5"><a href="./cosman.html">Man Costumes</a></p>
+            <p class="mx-5"><a href="./cosman.php">Man Costumes</a></p>
             <hr class="m-2">
-            <p class="mx-5"><a href="./cosothers.html">Other Costumes</a></p>
+            <p class="mx-5"><a href="./cosothers.php">Other Costumes</a></p>
             <hr class="m-2">
         </div>
         <div class="flex flex-col">
             <div class="text-white text-left text-3xl my-5 mx-7">
-                <h1 class="font-bold"><b>Other Costumes</b></h1>
+                <h1 class="font-bold"><b>Man Costumes</b></h1>
             </div>
             <div class="mx-5">
-                <a href="./cosinfo4.html">
+                <a href="./cosinfo3.php">
                     <button class="bg-orange-200 rounded p-5 m-5">
-                        <p><img class="max-h-64 w-auto m-1 rounded" src="./asset/godzilla.jpeg" alt=""></p>
-                        <p>Godzilla</p>
+                        <p><img class="max-h-64 w-auto m-1 rounded" src="./asset/gojo.png" alt=""></p>
+                        <p>Gojo Satoru</p>
                         <p class="font-bold">Available</p>
                     </button>
                 </a>

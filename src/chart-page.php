@@ -1,3 +1,15 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +55,7 @@
                     <p class="tex-custom_black md:hidden">Home</p>
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="chart-page.html">
+                    <a href="chart-page.php">
                         <i class='bx bx-shopping-bag text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Chart</p>
@@ -152,7 +164,7 @@
                     <span class="text-xl font-bold text-dark_brown">Rp 85.000</span>
                 </div>
                 <button class="bg-dark_cream hover:bg-gray-300 text-custom_orange font-bold py-3 px-6 rounded mt-6">
-                    <a href="checkout-page.html">Checkout</a>
+                    <a href="checkout-page.php">Checkout</a>
                 </button>
             </div>
         </div>

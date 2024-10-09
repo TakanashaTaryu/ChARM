@@ -1,3 +1,16 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +56,7 @@
                     <p class="tex-custom_black md:hidden">Home</p>
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="chart-page.html">
+                    <a href="chart-page.php">
                         <i class='bx bx-shopping-bag text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Chart</p>
@@ -77,10 +90,10 @@
                 <!-- Images -->
                 <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
                     <div class="flex-none w-full h-full">
-                        <img src="asset/gojo.png" alt="Image 1" class="w-full h-full object-cover">
+                        <img src="asset/miku.jpg" alt="Image 1" class="w-full h-full object-cover">
                     </div>
                     <div class="flex-none w-full h-full">
-                        <img src="asset/gojo2.jpg" alt="Image 2" class="w-full h-full object-cover">
+                        <img src="asset/miku2.jpg" alt="Image 2" class="w-full h-full object-cover">
                     </div>
                 </div>
         
@@ -99,18 +112,20 @@
             <div>
                 <!-- Title and Badge -->
                 <div class="mb-4">
-                    <h1 class="text-2xl font-bold">Gojo</h1>
-                    <span class="bg-yellow-500 text-bright_cream text-sm px-2 py-1 rounded">Remaining 1</span>
+                    <h1 class="text-2xl font-bold">miku</h1>
+                    <span class="bg-red-700 text-bright_cream text-sm px-2 py-1 rounded">Out of Stock</span>
                 </div>
 
                 <!-- Price -->
                 <div class="text-3xl text-custom_black font-semibold mb-6">
-                    Rp35.000/Hari
+                    Rp20.000/hari
                 </div>
                 
                 <!-- Action Buttons -->
                 <div class="flex space-x-4 mb-6">
-                    <button class="bg-custom_brown text-white px-4 py-2 rounded"><a href="checkout-page.html">Rent now</a></button>
+                    <button class="bg-custom_brown text-white px-4 py-2 rounded disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
+                        <a href="checkout-page.php" class="pointer-events-none">Rent now</a>
+                    </button>
                     <button class="bg-custom_white px-4 py-2 rounded"><a href="whistlist-page.html">Add to Wishlist</a></button>
                 </div>
 
@@ -125,21 +140,21 @@
                     <div class="grid grid-cols-3 gap-8 p-5">
                         <div class="flex flex-col justify-items-start">
                             <div class="w-full bg-custom_white h-36 rounded-md flex items-center max-md:h-20 overflow-hidden">
-                                <img src="asset/miku.jpg" alt="sub-option costum" class="rounded-md">
+                                <img src="asset/nagaungu3.jpg" alt="sub-option costum" class="rounded-md">
                             </div>
                             <div>
-                                <p class="font-bold">Hatsune Miku</p>
-                                <p class="text-sm left-0">Rp 50.000</p>
+                                <p class="font-bold">Naga Ungu</p>
+                                <p class="text-sm left-0">Rp 55.0000</p>
                             </div>
                         </div>
                         
                         <div class="flex flex-col justify-items-start">
                             <div class="w-full bg-custom_white h-36 rounded-md flex items-center max-md:h-20 overflow-hidden">
-                                <img src="asset/nagaungu3.jpg" alt="sub-option costum" class="rounded-md">
+                                <img src="asset/gojo.png" alt="sub-option costum" class="rounded-md">
                             </div>
                             <div>
-                                <p class="font-bold">Naga Ungu</p>
-                                <p class="text-sm left-0">Rp 35.0000</p>
+                                <p class="font-bold">gojo</p>
+                                <p class="text-sm left-0">Rp 55.0000</p>
                             </div>
                         </div>
                         

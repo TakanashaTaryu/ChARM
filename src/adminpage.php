@@ -54,10 +54,10 @@ $username = $_SESSION['username'];
                         <a class="hover:text-orange-500" href="./adminpage.php">Home</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./costumes.html">Costumes</a>
+                        <a class="hover:text-orange-500" href="./costumes.php">Costumes</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./addcos.html">Add Costumes</a>
+                        <a class="hover:text-orange-500" href="./addcos.php">Add Costumes</a>
                     </li>
                     <li>
                         <a class="hover:text-orange-500" href="./statcos.html">Status</a>
@@ -78,7 +78,7 @@ $username = $_SESSION['username'];
     <section class="flex flex-col justify-between items-center my-10">
         <ul class="flex items-center gap-[4vw]">
             <li class="text-white text-center text-xl">
-                <a href="./coswoman.html">
+                <a href="./coswoman.php">
                     <button>
                         <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/miku.jpg" alt="wanita">
                     </button>
@@ -86,7 +86,7 @@ $username = $_SESSION['username'];
                 </a>
             </li>
             <li class="text-white text-center text-xl">
-                <a href="./cosman.html">
+                <a href="./cosman.php">
                     <button>
                         <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/gojo.png" alt="pria">
                     </button>
@@ -94,7 +94,7 @@ $username = $_SESSION['username'];
                 </a>
             </li>
             <li class="text-white text-center text-xl">
-                <a href="./cosothers.html">
+                <a href="./cosothers.php">
                     <button>
                         <img class="max-h-24 w-auto m-1 rounded-full md:m-10" src="./asset/godzilla.jpeg" alt="other">
                     </button>

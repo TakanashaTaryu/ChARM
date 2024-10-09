@@ -1,3 +1,16 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +28,7 @@
     <!-- Header -->
     <header class="flex justify-between overflow-hidden items-center p-4">
         <div id="logo" class="">
-            <a href="main_page.php" class="flex gap-2 items-center">
+            <a href="#" class="flex gap-2 items-center">
                 <img class="max-h-9 w-auto ml-1 md:ml-10" src="asset/logo_Charm.png" alt="logo_Charm">
                 <span class="text-lg font-semibold mt-2 text-custom_black">CHARM</span>
             </a>
@@ -43,7 +56,7 @@
                     <p class="tex-custom_black md:hidden">Home</p>
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="chart-page.html">
+                    <a href="chart-page.php">
                         <i class='bx bx-shopping-bag text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Chart</p>
@@ -77,10 +90,10 @@
                 <!-- Images -->
                 <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
                     <div class="flex-none w-full h-full">
-                        <img src="asset/nagaungu.png" alt="Image 1" class="w-full h-full object-cover">
+                        <img src="asset/costume-image-4.jpg" alt="Image 1" class="w-full h-full object-cover">
                     </div>
-                    <div class="flex-none w-full h-full content-center">
-                        <img src="asset/nagaungu2.jpg" alt="Image 2" class="w-full h-full object-cover">
+                    <div class="flex-none w-full h-full">
+                        <img src="#" alt="Image 2" class="w-full h-full object-cover">
                     </div>
                 </div>
         
@@ -99,18 +112,18 @@
             <div>
                 <!-- Title and Badge -->
                 <div class="mb-4">
-                    <h1 class="text-2xl font-bold">Naga Ungu</h1>
-                    <span class="bg-green-500 text-bright_cream text-sm px-2 py-1 rounded">Available</span>
+                    <h1 class="text-2xl font-bold">Ino-Shika-Cho</h1>
+                    <span class="bg-dark_cream text-bright_cream text-sm px-2 py-1 rounded">Available</span>
                 </div>
 
                 <!-- Price -->
                 <div class="text-3xl text-custom_black font-semibold mb-6">
-                    Rp50.000/Hari
+                    Rp55.000/Hari
                 </div>
                 
                 <!-- Action Buttons -->
                 <div class="flex space-x-4 mb-6">
-                    <button class="bg-custom_brown text-white px-4 py-2 rounded"><a href="checkout-page.html">Rent now</a></button>
+                    <button class="bg-custom_brown text-white px-4 py-2 rounded"><a href="checkout-page.php">Rent now</a></button>
                     <button class="bg-custom_white px-4 py-2 rounded"><a href="whistlist-page.html">Add to Wishlist</a></button>
                 </div>
 
@@ -125,11 +138,11 @@
                     <div class="grid grid-cols-3 gap-8 p-5">
                         <div class="flex flex-col justify-items-start">
                             <div class="w-full bg-custom_white h-36 rounded-md flex items-center max-md:h-20 overflow-hidden">
-                                <img src="asset/miku2.jpg" alt="sub-option costum" class="rounded-md">
+                                <img src="asset/godzilla.jpeg" alt="sub-option costum" class="rounded-md">
                             </div>
                             <div>
-                                <p class="font-bold">Hatsune Miku</p>
-                                <p class="text-sm left-0">Rp 20.0000</p>
+                                <p class="font-bold">godzilla</p>
+                                <p class="text-sm left-0">Rp 55.0000</p>
                             </div>
                         </div>
                         
@@ -145,11 +158,11 @@
                         
                         <div class="flex flex-col justify-items-start">
                             <div class="w-full bg-custom_white h-36 rounded-md flex items-center max-md:h-20 overflow-hidden">
-                                <img src="asset/costume-image-4.jpg" alt="sub-option costum" class="rounded-md">
+                                <img src="asset/costume-image=5.png" alt="sub-option costum" class="rounded-md">
                             </div>
                             <div>
-                                <p class="font-bold">Ino-Shika-Cho</p>
-                                <p class="text-sm left-0">Rp 55.0000</p>
+                                <p class="font-bold">Three Legendary Sannin</p>
+                                <p class="text-sm left-0">Rp 65.0000</p>
                             </div>
                         </div>
                         

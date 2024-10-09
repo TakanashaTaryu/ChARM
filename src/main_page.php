@@ -75,7 +75,7 @@ $username = $_SESSION['username'];
                     <p class="tex-custom_black md:hidden">Home</p>
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="chart-page.html">
+                    <a href="chart-page.php">
                         <i class='bx bx-shopping-bag text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Chart</p>
@@ -165,11 +165,11 @@ $username = $_SESSION['username'];
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-6xl">
 
             <!-- Product Card 1 -->
-        <div id="anime" class="product-category" href="product_page(nagaungu).html">
-            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product_page(nagaungu).html">
+        <div id="anime" class="product-category" href="product_page(nagaungu).php">
+            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product_page(nagaungu).php">
                 <!-- Image Section -->
                 <div class="bg-gray-300 h-40 relative">
-                    <a href="product_page(nagaungu).html">
+                    <a href="product_page(nagaungu).php">
                     <img src="asset/stok1.png" alt="Description" class="w-full h-full object-cover">
                     </a>
                 </div>
@@ -184,11 +184,11 @@ $username = $_SESSION['username'];
 
 
             
-        <div id="anime" class="product-category" href="product_page(nagaungu).html">
-            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product_page(miku).html">
+        <div id="anime" class="product-category" href="product_page(nagaungu).php">
+            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product_page(miku).php">
                 <!-- Image Section -->
                 <div class="bg-gray-300 h-40 relative">
-                    <a href="product_page(miku).html">
+                    <a href="product_page(miku).php">
                     <img src="asset/miku.jpg" alt="Description" class="w-full h-full object-cover">
                     </a>
                 </div>
@@ -202,11 +202,11 @@ $username = $_SESSION['username'];
         </div>
 
 
-        <div id="anime" class="product-category" href="product_page(nagaungu).html">
-            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product_page(gojo).html">
+        <div id="anime" class="product-category" href="product_page(nagaungu).php">
+            <div class="bg-white shadow-md rounded-md overflow-hidden" href="product_page(gojo).php">
                 <!-- Image Section -->
                 <div class="bg-gray-300 h-40 relative">
-                    <a href="product_page(gojo).html">
+                    <a href="product_page(gojo).php">
                     <img src="asset/gojo.png" alt="Description" class="w-full h-full object-cover">
                     </a>
                 </div>
