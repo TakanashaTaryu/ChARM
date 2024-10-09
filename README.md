@@ -24,10 +24,28 @@ Revision: For the courier feature, WhatsApp API will be added to provide notific
 - Tailwinds Framework
 - PHP 8.1.10
 - phpMyAdmin 5.2.1 or above
+- composer 2.7.9 or above 
 
 ---
 
 ## Dev Installation Web
+- install php
+```C
+you can install php from https://www.php.net/releases/ and follow the installer instruction
+php must above 8.1.10
+```
+- install npm
+```C
+npm install
+```
+- install tailwindcss 
+```C
+npm install -D tailwindcss
+```
+- install composer
+```C
+you can install from https://getcomposer.org/download/ and follow the installer instruction
+```
 - Run the framework build or wacth using npm
 ```C
 npm run build
