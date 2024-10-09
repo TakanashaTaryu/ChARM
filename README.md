@@ -114,9 +114,9 @@ if it manage to Main Page, congrats you can running it
 
 - Beta 1.9
   1. user now can register and login as user or admin (depends of their access)
-  2. any user can forget password using email (with phpmailerm *tatsuarieyu@gmail.com as mail service)
+  2. any user can forget password using email (with phpmailer as mail service)
   3. dev can manage user that can access admin page with using database manager
-  4. 
+  4. user can fill their personal details in account setting
   5. 
 
 
@@ -125,7 +125,7 @@ if it manage to Main Page, congrats you can running it
 ## Academician
 
 - [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
-  > As a FrontEnd dev
+  > As a BackEnd dev
 - [Umar Zaki Gunawan](https://github.com/marzkigun27) [UZY]
   > As a FrontEnd dev
 - [Dariele Zebada Sanuwu Gea](https://github.com/DrealGea) [DAZ]
