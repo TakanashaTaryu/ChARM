@@ -24,10 +24,28 @@ Revision: For the courier feature, WhatsApp API will be added to provide notific
 - Tailwinds Framework
 - PHP 8.1.10
 - phpMyAdmin 5.2.1 or above
+- composer 2.7.9 or above 
 
 ---
 
 ## Dev Installation Web
+- install php
+```C
+you can install php from https://www.php.net/releases/ and follow the installer instruction
+php must above 8.1.10
+```
+- install npm
+```C
+npm install
+```
+- install tailwindcss 
+```C
+npm install -D tailwindcss
+```
+- install composer
+```C
+you can install from https://getcomposer.org/download/ and follow the installer instruction
+```
 - Run the framework build or wacth using npm
 ```C
 npm run build
@@ -40,10 +58,6 @@ npm run watch
 - Manage to main website with
 ```C
 http://127.0.0.1:[your port]/src
-```
-or
-```C
-http://localhost/
 ```
 
 
@@ -79,22 +93,31 @@ DB_PASSWORD=admin
 
 - Run Laragon or any PHP dev enviroment
 
+- Database instalas
+```C
+open charm/database/charm_db.sql
+open database manager (xampp or laragon or any)
+import charm_db.sql inside your database manager console
+```
+
 - Manage to website to test the database using
 ```C
 http://localhost/charm/src
 ```
 if it manage to Main Page, congrats you can running it
 
+
+
 ---
 
 ## Version
 
-- Beta 1.2 Changelog
-1. add full schematic database
-2. user can register and login
-3. admin can access admin page via login user (username & password = admin)
-4. user can change password using email OTP that user input when register (email from tatsuarieyu@gmail.com)
-5. index.php have some issue with script.js (it didnt detect location of script.js soo theres <script></script> in .php
+- Beta 1.9
+  1. user now can register and login as user or admin (depends of their access)
+  2. any user can forget password using email (with phpmailer as mail service)
+  3. dev can manage user that can access admin page with using database manager
+  4. user can fill their personal details in account setting
+  5. 
 
 
 ---
@@ -102,7 +125,7 @@ if it manage to Main Page, congrats you can running it
 ## Academician
 
 - [Mohammad Fiqri Firmansyah](https://github.com/TakanashaTaryu) [RYU]
-  > As a FrontEnd dev
+  > As a BackEnd dev
 - [Umar Zaki Gunawan](https://github.com/marzkigun27) [UZY]
   > As a FrontEnd dev
 - [Dariele Zebada Sanuwu Gea](https://github.com/DrealGea) [DAZ]
