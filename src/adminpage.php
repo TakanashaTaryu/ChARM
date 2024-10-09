@@ -1,6 +1,23 @@
 <?php
 session_start();
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $servername = "localhost";
+    $username_db = "admin";
+    $password_db = "admin";
+    $dbname = "charm_db";
+
+    include 'db_connection.php';
+
+
+    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
+
+    //Cek koneksi
+    if ($conn->connect_error) {
+        die("Koneksi Gagal: " . $conn->connect_error);
+    }
+}
+
 // Cek apakah pengguna sudah login dan adalah admin
 if (!isset($_SESSION['is_logged_in']) || $_SESSION['is_logged_in'] !== true || !isset($_SESSION['username'])) {
     header("Location: index.php");

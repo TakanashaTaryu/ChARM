@@ -1,6 +1,23 @@
 <?php
 session_start();
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $servername = "localhost";
+    $username_db = "admin";
+    $password_db = "admin";
+    $dbname = "charm_db";
+
+    include 'db_connection.php';
+
+
+    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
+
+    //Cek koneksi
+    if ($conn->connect_error) {
+        die("Koneksi Gagal: " . $conn->connect_error);
+    }
+}
+
 if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
     header("Location: index.php");
     exit();
@@ -24,10 +41,6 @@ $username = $_SESSION['username'];
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<?php
-echo $user_id;
-echo $username;
-?>
 
 <body class="font-lexend bg-gradient-to-r from-custom_orange via-bright_orange to-dark_cream">
 
@@ -76,7 +89,7 @@ echo $username;
 
                 </li>
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="account-setting-page.html">
+                    <a href="account_setting_page.php">
                         <i class='bx bx-user text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Account</p>
