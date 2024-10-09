@@ -1,3 +1,16 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +63,7 @@
                 </li>
                 <!-- Heart Icon -->
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="whistlist-page.html">
+                    <a href="whistlist-page.php">
                         <i class='bx bx-heart text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Wish List</p>

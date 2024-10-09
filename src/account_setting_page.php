@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <ul class="flex items-center space-x-6">
                 <li><a href="main_page.php"><i class='bx bx-home-alt text-3xl text-custom_black'></i></a></li>
                 <li><a href="chart-page.php"><i class='bx bx-shopping-bag text-3xl text-custom_black'></i></a></li>
-                <li><a href="whistlist-page.html"><i class='bx bx-heart text-3xl text-custom_black'></i></a></li>
+                <li><a href="whistlist-page.php"><i class='bx bx-heart text-3xl text-custom_black'></i></a></li>
                 <li><a href="account_setting_page.php"><i class='bx bx-user text-3xl text-custom_black'></i></a></li>
             </ul>
         </nav>

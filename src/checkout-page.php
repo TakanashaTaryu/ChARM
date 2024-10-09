@@ -62,7 +62,7 @@ $username = $_SESSION['username'];
                 </li>
                 <!-- Heart Icon -->
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="whistlist-page.html">
+                    <a href="whistlist-page.php">
                         <i class='bx bx-heart text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Wish List</p>

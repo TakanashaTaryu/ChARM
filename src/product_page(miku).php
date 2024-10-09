@@ -63,7 +63,7 @@ $username = $_SESSION['username'];
                 </li>
                 <!-- Heart Icon -->
                 <li class="max-md:flex max-md:flex-row max-md:gap-3 max-md:items-center">
-                    <a href="whistlist-page.html">
+                    <a href="whistlist-page.php">
                         <i class='bx bx-heart text-3xl text-custom_black mt-2 hover:scale-110'></i>
                     </a>
                     <p class="tex-custom_black md:hidden">Wish List</p>
@@ -126,7 +126,7 @@ $username = $_SESSION['username'];
                     <button class="bg-custom_brown text-white px-4 py-2 rounded disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
                         <a href="checkout-page.php" class="pointer-events-none">Rent now</a>
                     </button>
-                    <button class="bg-custom_white px-4 py-2 rounded"><a href="whistlist-page.html">Add to Wishlist</a></button>
+                    <button class="bg-custom_white px-4 py-2 rounded"><a href="whistlist-page.php">Add to Wishlist</a></button>
                 </div>
 
                 <div class="">

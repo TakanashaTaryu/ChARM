@@ -60,7 +60,7 @@ $username = $_SESSION['username'];
                         <a class="hover:text-orange-500" href="./addcos.php">Add Costumes</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./statcos.html">Status</a>
+                        <a class="hover:text-orange-500" href="./statcos.php">Status</a>
                     </li>
                     <li>
                         <button class="bg-white text-black px-4 py-2 rounded-full hover:bg-black hover:text-white" href="./index.php"><a href="./index.php">Log Out </a></button>

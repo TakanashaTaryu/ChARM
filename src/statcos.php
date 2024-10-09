@@ -1,3 +1,15 @@
+<?php
+
+if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+    header("Location: index.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$username = $_SESSION['username'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +41,7 @@
                         <a class="hover:text-orange-500" href="./addcos.php">Add Costumes</a>
                     </li>
                     <li>
-                        <a class="hover:text-orange-500" href="./statcos.html">Status</a>
+                        <a class="hover:text-orange-500" href="./statcos.php">Status</a>
                     </li>
                     <li>
                         <button class="bg-white text-black px-4 py-2 rounded-full hover:bg-black hover:text-white" href="./index.php"><a href="./index.php">Log Out </a></button>
