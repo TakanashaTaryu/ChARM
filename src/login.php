@@ -5,51 +5,50 @@ $loginSuccess = false;
 $loginMessage = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "localhost";
-    $username_db = "admin";
-    $password_db = "admin";
-    $dbname = "charm_db";
+    require_once 'db_connection.php';
 
-    include 'db_connection.php';
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
 
-
-    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-    //Cek koneksi
-    if ($conn->connect_error) {
-        die("Koneksi Gagal: " . $conn->connect_error);
-    }
-
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-    $sql = "SELECT user_id, username, password, admin_value FROM users WHERE username='$username'";
-    $result = $conn->query($sql);
+    // Updated query to match actual database schema
+    $sql = "SELECT user_id, username, password, admin_value, status, email_verified_at, email FROM users WHERE username = ? AND status = 'active'";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['is_logged_in'] = true;
-
-            if ($user['admin_value'] == 1) {
-                header("Location: adminpage.php");
-                exit();
+            // Check if email is verified
+            if (is_null($user['email_verified_at'])) {
+                $loginMessage = "<div class='bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-lg mb-4'>";
+                $loginMessage .= "<strong>Email Not Verified!</strong> Please verify your email before logging in. ";
+                $loginMessage .= "<a href='verify_email.php?email=" . urlencode($user['email']) . "' class='underline font-semibold hover:text-yellow-800'>Verify Now</a>";
+                $loginMessage .= "</div>";
             } else {
-                header("Location: main_page.php");
-                exit();
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['admin_value'] = $user['admin_value'];
+
+                if ($user['admin_value'] == 1) {
+                    header("Location: admin/adminpage.php");
+                    exit();
+                } else {
+                    header("Location: main_page.php");
+                    exit();
+                }
             }
         } else {
-            $loginMessage = "<p class='text-red-500'>Password salah!</p>";
+            $loginMessage = "<div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4'><strong>Error:</strong> Password salah!</div>";
         }
     } else {
-        $loginMessage = "<p class='text-red-500'>Username tidak ditemukan!</p>";
+        $loginMessage = "<div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4'><strong>Error:</strong> Username tidak ditemukan atau akun tidak aktif!</div>";
     }
 
-
+    $stmt->close();
     $conn->close();
 }
 ?>
@@ -84,21 +83,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- Username Input -->
                 <div>
                     <label for="username" class="block text-custom_black font-bold mb-2">Username</label>
-                    <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange" placeholder="Enter your username" required>
+                    <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange transition-all duration-300" placeholder="Enter your username" required>
                 </div>
                 <!-- Password Input -->
                 <div>
                     <label for="password" class="block text-custom_black font-bold mb-2">Password</label>
-                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange" placeholder="Enter your password" required>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom_orange transition-all duration-300" placeholder="Enter your password" required>
                 </div>
 
-                <?php
-                echo $loginMessage; 
-                ?>
+                <?php echo $loginMessage; ?>
 
                 <!-- Login Button -->
                 <div>
-                    <button type="submit" class="w-full bg-dark_orange text-custom_white px-4 py-2 rounded-lg hover:bg-bright_cream hover:text-custom_brown">
+                    <button type="submit" class="w-full bg-dark_orange text-custom_white px-4 py-2 rounded-lg hover:bg-bright_cream hover:text-custom_brown transition-colors duration-300">
                         Login
                     </button>
                 </div>

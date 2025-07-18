@@ -14,7 +14,7 @@ $user_id = $_SESSION['user_id'];
 $servername = "localhost";
 $username_db = "admin";
 $password_db = "admin";
-$dbname = "charm_db";
+$dbname = "charm_new";
 
 $conn = new mysqli($servername, $username_db, $password_db, $dbname);
 

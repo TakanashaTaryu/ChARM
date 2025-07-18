@@ -1,16 +1,6 @@
 <?php
 session_start();
-
-$servername = "localhost"; 
-$username = "admin";
-$password = "admin";
-$dbname = "charm_db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once 'db_connection.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -23,11 +13,12 @@ function generateOTP($length = 6) {
 
 $message = "";
 
-// Jika tombol Send OTP ditekan
+// Send OTP
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send_otp'])) {
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
 
-    $sql = "SELECT * FROM users WHERE email = ?";
+    // Check if email exists and account is active
+    $sql = "SELECT user_id FROM users WHERE email = ? AND status = 'active'";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -35,70 +26,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send_otp'])) {
 
     if ($result->num_rows > 0) {
         $otp = generateOTP();
-        $created_at = date('Y-m-d H:i:s');
+        $expires_at = date('Y-m-d H:i:s', strtotime('+15 minutes')); // OTP expires in 15 minutes
 
-        $sql = "INSERT INTO otp_codes (email, otp_code, created_at) VALUES (?, ?, ?)";
+        // Delete any existing OTP for this email
+        $delete_sql = "DELETE FROM otp_codes WHERE email = ?";
+        $delete_stmt = $conn->prepare($delete_sql);
+        $delete_stmt->bind_param("s", $email);
+        $delete_stmt->execute();
+
+        // Insert new OTP with expiration
+        $sql = "INSERT INTO otp_codes (email, otp_code, expires_at, created_at) VALUES (?, ?, ?, NOW())";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $email, $otp, $created_at);
+        $stmt->bind_param("sss", $email, $otp, $expires_at);
         $stmt->execute();
 
+        // Send email (existing email code)
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'tatsuarieyu@gmail.com'; // Ganti dengan email Anda
-            $mail->Password   = 'ogpi egzo tznr vawk';    // Ganti dengan password aplikasi
+            $mail->Username   = 'mohfirmansyah315@gmail.com';
+            $mail->Password   = 'zbxg zggs gkep pzyv';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
-            // Pengirim
-            $mail->setFrom('tatsuarieyu@gmail.com', 'ChARM Support');
-            // Penerima
+            $mail->setFrom('mohfirmansyah315@gmail.com', 'ChARM Support');
             $mail->addAddress($email);
 
-            // Isi email
             $mail->isHTML(true);
-            $mail->Subject = 'Your OTP Code';
-            $mail->Body    = 'password change action detected, ignore this email if it is not from you. Here is your OTP code: <b>' . $otp . '</b>';
-            $mail->AltBody = 'password change action detected, ignore this email if it is not from you. Here is your OTP code: ' . $otp;
+            $mail->Subject = 'Your OTP Code - ChARM';
+            $mail->Body    = 'Password change action detected. If this was not you, please ignore this email. Your OTP code is: <b>' . $otp . '</b><br>This code will expire in 15 minutes.';
+            $mail->AltBody = 'Password change action detected. If this was not you, please ignore this email. Your OTP code is: ' . $otp . '. This code will expire in 15 minutes.';
 
             $mail->send();
-            $message = 'OTP has been sent to your email!';
+            $message = 'OTP has been sent to your email! It will expire in 15 minutes.';
 
-            $_SESSION['otp'] = $otp;
-            $_SESSION['email'] = $email;
+            $_SESSION['reset_email'] = $email;
         } catch (Exception $e) {
             $message = "Error in sending email: {$mail->ErrorInfo}";
         }
     } else {
-        $message = "Email does not exist!";
+        $message = "Email does not exist or account is inactive!";
     }
 }
 
-// Jika tombol Verify OTP ditekan
+// Verify OTP
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verify_otp'])) {
-    $entered_otp = $_POST['otp'];
+    $entered_otp = trim($_POST['otp']);
+    $email = $_SESSION['reset_email'] ?? '';
 
-    if ($entered_otp == $_SESSION['otp']) {
-        // Hapus OTP dari database setelah berhasil diverifikasi
-        $email = $_SESSION['email'];
-        $sql = "DELETE FROM otp_codes WHERE email = ? AND otp_code = ?";
+    if ($email) {
+        // Check OTP and expiration
+        $sql = "SELECT id FROM otp_codes WHERE email = ? AND otp_code = ? AND expires_at > NOW()";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $email, $entered_otp);
         $stmt->execute();
+        $result = $stmt->get_result();
 
-        // OTP verified successfully, proceed to password recovery
-        unset($_SESSION['otp']); // Hapus sesi OTP setelah verifikasi
-        
-        // Redirect ke recovery_password.php dengan email di query parameter
-        header("Location: recovery_password.php?email=" . urlencode($email));
-        exit();
+        if ($result->num_rows > 0) {
+            // OTP verified successfully
+            $delete_sql = "DELETE FROM otp_codes WHERE email = ?";
+            $delete_stmt = $conn->prepare($delete_sql);
+            $delete_stmt->bind_param("s", $email);
+            $delete_stmt->execute();
+
+            unset($_SESSION['reset_email']);
+            header("Location: recovery_password.php?email=" . urlencode($email));
+            exit();
+        } else {
+            $message = "Invalid or expired OTP!";
+        }
     } else {
-        $message = "Invalid OTP!";
+        $message = "Session expired. Please request a new OTP.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>

@@ -9,24 +9,14 @@ if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
 $user_id = $_SESSION['user_id'];
 $username = $_SESSION['username'];
 
-// Koneksi ke database
-$servername = "localhost";
-$username_db = "admin";
-$password_db = "admin";
-$dbname = "charm_db";
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
+require_once 'db_connection.php';
 
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi Gagal: " . $conn->connect_error);
-}
-
-// Inisialisasi variabel untuk menyimpan data
-$full_name = $alamat = $payment_method = $fav_waifu = "";
+// Initialize variables
+$full_name = $alamat = $payment_method = $fav_waifu = $phone = "";
 $success_message = $error_message = "";
 
-// Memuat data saat pertama kali
-$sql = "SELECT p.full_name, p.alamat, p.payment_method, p.fav_waifu FROM profiles p WHERE p.user_id = ?";
+// Load existing data with correct field names
+$sql = "SELECT full_name, address, preferred_payment_method, favorite_character, phone FROM profiles WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -34,35 +24,56 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $full_name = $row['full_name'];
-    $alamat = $row['alamat'];
-    $payment_method = $row['payment_method'];
-    $fav_waifu = $row['fav_waifu'];
+    $full_name = $row['full_name'] ?? '';
+    $alamat = $row['address'] ?? '';
+    $payment_method = $row['preferred_payment_method'] ?? '';
+    $fav_waifu = $row['favorite_character'] ?? '';
+    $phone = $row['phone'] ?? '';
 }
 
-// Proses form
+// Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $full_name = trim($_POST["nama"]);
-    $alamat = trim($_POST["alamat"]);
-    $payment_method = $_POST["metode"];
-    $fav_waifu = trim($_POST["note"]);
+    $full_name = trim($_POST["nama"] ?? '');
+    $alamat = trim($_POST["alamat"] ?? '');
+    $payment_method = $_POST["metode"] ?? '';
+    $fav_waifu = trim($_POST["note"] ?? '');
+    $phone = trim($_POST["phone"] ?? '');
 
-    // Update tabel users
-    $sql = "UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi", $full_name, $alamat, $user_id);
+    // Check if profile exists
+    $check_sql = "SELECT id FROM profiles WHERE user_id = ?";
+    $check_stmt = $conn->prepare($check_sql);
+    $check_stmt->bind_param("i", $user_id);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
 
-    // Update tabel profiles
-    $sql = "UPDATE profiles SET full_name = ?, alamat = ?, payment_method = ?, fav_waifu = ? WHERE user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssi", $full_name, $alamat, $payment_method, $fav_waifu, $user_id);
-
-
-}else {
-    $error_message = "Gagal memperbarui pengguna: " . $conn->error;
+    if ($check_result->num_rows > 0) {
+        // Update existing profile
+        $update_sql = "UPDATE profiles SET 
+                      full_name = ?, address = ?, preferred_payment_method = ?, 
+                      favorite_character = ?, phone = ?, updated_at = NOW() 
+                      WHERE user_id = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("sssssi", $full_name, $alamat, $payment_method, $fav_waifu, $phone, $user_id);
+        
+        if ($update_stmt->execute()) {
+            $success_message = "Account updated successfully!";
+        } else {
+            $error_message = "Failed to update account: " . $conn->error;
+        }
+    } else {
+        // Insert new profile
+        $insert_sql = "INSERT INTO profiles (user_id, full_name, address, preferred_payment_method, favorite_character, phone, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
+        $insert_stmt = $conn->prepare($insert_sql);
+        $insert_stmt->bind_param("isssss", $user_id, $full_name, $alamat, $payment_method, $fav_waifu, $phone);
+        
+        if ($insert_stmt->execute()) {
+            $success_message = "Profile created successfully!";
+        } else {
+            $error_message = "Failed to create profile: " . $conn->error;
+        }
+    }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

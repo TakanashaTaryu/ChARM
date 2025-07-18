@@ -7,33 +7,17 @@ if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
     exit();
 }
 
-// Ambil user_id dari session
 $user_id = $_SESSION['user_id'];
+require_once 'db_connection.php';
 
-// Koneksi ke database
-$servername = "localhost";
-$username_db = "admin";
-$password_db = "admin";
-$dbname = "charm_db";
+// Initialize variables with correct field names from database schema
+$full_name = $phone = $date_of_birth = $gender = $address = $city = $postal_code = $country = $payment_method = $fav_waifu = "";
+$success_message = $error_message = "";
 
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi Gagal: " . $conn->connect_error);
-}
-
-// Inisialisasi variabel untuk mencegah kesalahan 'undefined variable'
-$full_name = '';
-$alamat = '';
-$payment_method = '';
-$fav_waifu = '';
-
-// Ambil data pengguna dari database
-$sql = "SELECT profiles.full_name, profiles.alamat, profiles.payment_method, profiles.fav_waifu 
-        FROM profiles 
-        JOIN users ON profiles.user_id = users.user_id 
-        WHERE users.user_id = ?";
+// Load existing data
+$sql = "SELECT p.*, u.email, u.username FROM profiles p 
+        JOIN users u ON p.user_id = u.user_id 
+        WHERE p.user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -41,55 +25,75 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    // Mengisi variabel dengan data yang ada di database
     $full_name = $row['full_name'] ?? '';
-    $alamat = $row['alamat'] ?? '';
-    $payment_method = $row['payment_method'] ?? '';
-    $fav_waifu = $row['fav_waifu'] ?? '';
+    $phone = $row['phone'] ?? '';
+    $date_of_birth = $row['date_of_birth'] ?? '';
+    $gender = $row['gender'] ?? '';
+    $address = $row['address'] ?? '';
+    $city = $row['city'] ?? '';
+    $postal_code = $row['postal_code'] ?? '';
+    $country = $row['country'] ?? 'Indonesia';
+    $payment_method = $row['preferred_payment_method'] ?? '';
+    $fav_waifu = $row['favorite_character'] ?? '';
+    $email = $row['email'];
+    $username = $row['username'];
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil data dari form
-    $full_name = $_POST['full_name'] ?? '';
-    $alamat = $_POST['alamat'] ?? '';
+    $full_name = trim($_POST['full_name'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $date_of_birth = $_POST['date_of_birth'] ?? null;
+    $gender = $_POST['gender'] ?? '';
+    $address = trim($_POST['alamat'] ?? '');
+    $city = trim($_POST['city'] ?? '');
+    $postal_code = trim($_POST['postal_code'] ?? '');
+    $country = $_POST['country'] ?? 'Indonesia';
     $payment_method = $_POST['payment_method'] ?? '';
-    $fav_waifu = $_POST['fav_waifu'] ?? '';
+    $fav_waifu = trim($_POST['fav_waifu'] ?? '');
 
-    // Check jika user_id sudah ada di database atau belum
-    $check_sql = "SELECT * FROM profiles WHERE user_id = ?";
+    // Check if profile exists
+    $check_sql = "SELECT id FROM profiles WHERE user_id = ?";
     $check_stmt = $conn->prepare($check_sql);
     $check_stmt->bind_param("i", $user_id);
     $check_stmt->execute();
-    $result = $check_stmt->get_result();
+    $check_result = $check_stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        // Jika user_id sudah ada, lakukan UPDATE
-        $update_sql = "UPDATE profiles SET full_name=?, alamat=?, payment_method=?, fav_waifu=?, updated_at=NOW() WHERE user_id=?";
+    if ($check_result->num_rows > 0) {
+        // Update existing profile
+        $update_sql = "UPDATE profiles SET 
+                      full_name = ?, phone = ?, date_of_birth = ?, gender = ?, 
+                      address = ?, city = ?, postal_code = ?, country = ?, 
+                      preferred_payment_method = ?, favorite_character = ?, 
+                      updated_at = NOW() 
+                      WHERE user_id = ?";
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("ssssi", $full_name, $alamat, $payment_method, $fav_waifu, $user_id);
+        $update_stmt->bind_param("ssssssssssi", 
+            $full_name, $phone, $date_of_birth, $gender, 
+            $address, $city, $postal_code, $country, 
+            $payment_method, $fav_waifu, $user_id);
         
         if ($update_stmt->execute()) {
             echo "<script>alert('Informasi berhasil diperbarui.');</script>";
         } else {
-            echo "<script>alert('Terjadi kesalahan saat memperbarui informasi.');</script>";
+            echo "<script>alert('Gagal memperbarui informasi.');</script>";
         }
     } else {
-        // Jika user_id belum ada, lakukan INSERT
-        $insert_sql = "INSERT INTO profiles (user_id, full_name, alamat, payment_method, fav_waifu, updated_at) VALUES (?, ?, ?, ?, ?, NOW())";
+        // Insert new profile
+        $insert_sql = "INSERT INTO profiles 
+                      (user_id, full_name, phone, date_of_birth, gender, address, city, postal_code, country, preferred_payment_method, favorite_character, created_at, updated_at) 
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
         $insert_stmt = $conn->prepare($insert_sql);
-        $insert_stmt->bind_param("issss", $user_id, $full_name, $alamat, $payment_method, $fav_waifu);
+        $insert_stmt->bind_param("issssssssss", 
+            $user_id, $full_name, $phone, $date_of_birth, $gender, 
+            $address, $city, $postal_code, $country, 
+            $payment_method, $fav_waifu);
         
         if ($insert_stmt->execute()) {
-            echo "<script>alert('Informasi berhasil ditambahkan.');</script>";
+            echo "<script>alert('Profile berhasil dibuat.');</script>";
         } else {
-            echo "<script>alert('Terjadi kesalahan saat menambahkan informasi.');</script>";
+            echo "<script>alert('Gagal membuat profile.');</script>";
         }
     }
-
-    // Tutup statement
-    $check_stmt->close();
-    if (isset($update_stmt)) $update_stmt->close();
-    if (isset($insert_stmt)) $insert_stmt->close();
 }
 ?>
 

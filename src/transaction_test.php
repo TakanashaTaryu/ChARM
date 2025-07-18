@@ -1,71 +1,56 @@
 <?php
-// config.php
-$servername = "localhost";
-$username_db = "admin";
-$password_db = "admin";
-$dbname = "charm_db";
-
-// Konfigurasi Midtrans
-$midtrans_client_key = "SB-Mid-client-PTOwdx_ZDMJ31gS1";
-$midtrans_server_key = "SB-Mid-server-p6MgCKt5insW_SC-ZwWTCM9_";
-
-// index.php
 session_start();
-include 'db_connection.php';
-include 'functions.php';
+require_once 'db_connection.php';
+require_once 'functions.php';
 
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'] ?? 1; // Assuming user is logged in
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_SESSION['snap_token'])) {
+    $user_id = $_SESSION['user_id'] ?? 1; // Default for testing
     $total = $_POST['total'];
-    $rent_start = $_POST['rent_start'];
-    $rent_done = $_POST['rent_done'];
+    $rent_start = date('Y-m-d');
+    $rent_end = date('Y-m-d', strtotime('+7 days')); // 7 days rental
     
-    // Insert into rent_details table
-    $sql = "INSERT INTO rent_details (user_id, total, rent_start, rent_done) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("idss", $user_id, $total, $rent_start, $rent_done);
+    // Start transaction
+    $conn->begin_transaction();
     
-    if ($stmt->execute()) {
+    try {
+        // Insert into rent_details table with correct field names
+        $sql = "INSERT INTO rent_details (user_id, total_amount, rent_start, rent_end, status, created_at, updated_at) VALUES (?, ?, ?, ?, 'pending', NOW(), NOW())";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("idss", $user_id, $total, $rent_start, $rent_end);
+        $stmt->execute();
         $rent_id = $stmt->insert_id;
     
         // Generate unique order ID
         $order_id = "ORDER-" . time() . "-" . $rent_id;
         
-        // Insert into payment_details table
-
-$sql = "INSERT INTO payment_details (rent_id, user_id, amount, payment_code) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("iiis", $rent_id, $user_id, $total, $order_id);
-$stmt->execute();
-$payment_id = $stmt->insert_id;
-
+        // Insert into payment_details table with correct field names
+        $sql = "INSERT INTO payment_details (rent_id, user_id, amount, payment_code, status, created_at, updated_at) VALUES (?, ?, ?, ?, 'pending', NOW(), NOW())";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iids", $rent_id, $user_id, $total, $order_id);
+        $stmt->execute();
+        $payment_id = $stmt->insert_id;
         
-        if ($stmt->execute()) {
-            $payment_id = $stmt->insert_id;
+        // Get Snap Token
+        $snap_token = getSnapToken($order_id, $total);
+        
+        if ($snap_token) {
+            // Update payment_details with Snap Token
+            $sql = "UPDATE payment_details SET payment_url = ?, updated_at = NOW() WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("si", $snap_token, $payment_id);
+            $stmt->execute();
             
-            // Get Snap Token
-            $snap_token = getSnapToken($order_id, $total);
+            $_SESSION['snap_token'] = $snap_token;
+            $_SESSION['order_id'] = $order_id;
+            $_SESSION['payment_id'] = $payment_id;
             
-            if ($snap_token) {
-                // Update payment_details with Snap Token
-                $sql = "UPDATE payment_details SET payment_url_API = ? WHERE id = ?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("si", $snap_token, $payment_id);
-                $stmt->execute();
-                
-                $_SESSION['snap_token'] = $snap_token;
-                $_SESSION['order_id'] = $order_id;
-            }
+            $conn->commit();
         } else {
-            echo "Error: " . $stmt->error;
+            throw new Exception("Failed to get Snap Token");
         }
-    } else {
-        echo "Error: " . $stmt->error;
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
