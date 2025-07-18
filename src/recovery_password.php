@@ -1,16 +1,8 @@
 <?php
 session_start();
 
-// Koneksi database
-$servername = "localhost";
-$username_db = "admin";
-$password_db = "admin";
-$dbname = "charm_new";
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-if ($conn->connect_error) {
-    die("Koneksi Gagal: " . $conn->connect_error);
-}
+// Use centralized database connection
+require_once 'db_connection.php';
 
 // Mendapatkan email dari URL (query parameter)
 if (isset($_GET['email'])) {

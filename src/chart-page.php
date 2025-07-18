@@ -7,21 +7,8 @@ if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
     exit();
 }
 
-// Ambil user_id dari session
-$user_id = $_SESSION['user_id'];
-
-// Koneksi ke database
-$servername = "localhost";
-$username_db = "admin";
-$password_db = "admin";
-$dbname = "charm_new";
-
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-// Cek koneksi
-if ($conn->connect_error) {
-    die("Koneksi Gagal: " . $conn->connect_error);
-}
+// NEW - Use centralized connection
+require_once 'db_connection.php';
 ?>
 
 <!DOCTYPE html>
